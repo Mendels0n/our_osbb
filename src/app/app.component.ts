@@ -11,5 +11,4 @@ export class AppComponent implements OnInit {
 		console.log("Application component initialized ...");
 		this.title = "Hello world!"
     }
-
 }
