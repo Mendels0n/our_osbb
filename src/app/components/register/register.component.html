@@ -1,4 +1,7 @@
 <h1>Register</h1>
 
-<a [routerLink]="['/create-user']">Create User</a>
+<!--<a [routerLink]="['/create-user']">Create User</a>-->
 <a [routerLink]="['/create-chief']">Create Chief</a>
+<ul>
+    <li *ngFor="let item of osb"><a [routerLink]="['/create-user',item.id]">{{item.name}}</a></li>
+</ul>

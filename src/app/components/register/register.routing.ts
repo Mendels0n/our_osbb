@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateChiefComponent } from './create-chief/create-chief.component';
+import { RegisterComponent } from "./register.component";
 
 const registerRoutes: Routes = [
-  { path: 'create-user',  component: CreateUserComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'create-user/:id',  component: CreateUserComponent },
   { path: 'create-chief', component: CreateChiefComponent }
 ];
 
