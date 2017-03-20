@@ -1,7 +1,15 @@
-<h1>Register</h1>
-
-<!--<a [routerLink]="['/create-user']">Create User</a>-->
-<a [routerLink]="['/create-chief']">Create Chief</a>
-<ul>
-    <li *ngFor="let item of osb"><a [routerLink]="['/create-user',item.id]">{{item.name}}</a></li>
-</ul>
+<h2>Выберите ОСББ</h2>
+<div class="row">
+  <div *ngFor="let item of osb" class="col-sm-6 col-md-2">
+    <div class="thumbnail">
+      <div class="caption">
+        <h4>{{item.name}}</h4>
+        <p>{{item.street}}</p>
+        <p><a [routerLink]="['/create-user',item.id]" class="btn btn-success" role="button">Подключится</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="create-chief">
+  <button type="button" class="btn btn-primary" [routerLink]="['/create-chief']">Создать ОСББ</button>
+</div>

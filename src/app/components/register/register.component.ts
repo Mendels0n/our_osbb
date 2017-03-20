@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OsbbService } from "../../service/osbb.service";
+import { OsbbService } from "../../services/osbb.service";
 
 
 @Component({
@@ -16,7 +16,6 @@ export class RegisterComponent {
 		this.osbb.getOsbb()
 			.subscribe(data => {
 				this.osb = data;
-				console.log(this.osb);
 			});
 	}
 
