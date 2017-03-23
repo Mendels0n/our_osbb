@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { moveInLeft } from "../../../router.animations";
 
 import { OsbbService } from "../../../services/osbb.service";
 import { OSBB } from "../../../models/osbb.model";
 
-
 @Component({
 	selector: 'create-user',
 	templateUrl: 'create-user.component.html',
-	styleUrls:['create-user.component.scss']
+	styleUrls:['create-user.component.scss'],
+	animations: [moveInLeft()]
 })
 export class CreateUserComponent implements OnInit {
 	osbbID : number;
 	data : OSBB;
 	registerUser : FormGroup;
 	phone:number;
+	state:string = '';
 	model:any = {};
 
 	constructor(private fb: FormBuilder, private route: ActivatedRoute, private service: OsbbService ) {

@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { OsbbService } from "../../services/osbb.service";
+import { moveInLeft, fallIn } from "../../router.animations";
 
 
 @Component({
 	selector: 'register',
 	templateUrl: 'register.component.html',
-	styleUrls:['register.component.scss']
+	styleUrls:['register.component.scss'],
+	animations: [fallIn(), moveInLeft()]
 })
-export class RegisterComponent {
-	osb: any;
-	constructor(private osbb:OsbbService) {
+export class RegisterComponent implements OnInit{
+	osbb: any;
+	state:string = '';
 
-	}
+	constructor(private service:OsbbService) {}
 	ngOnInit() {
-		this.osbb.getOsbb()
+		this.service.getOsbb()
 			.subscribe(data => {
-				this.osb = data;
+				this.osbb = data;
 			});
 	}
 

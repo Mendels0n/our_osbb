@@ -17,6 +17,9 @@ export class OsbbService {
     getOsbbb(id:number){
         return this.http.get(`${this.url}/${id}`)
             .map(res => res.json().data);
-
+    }
+    createOsbb(osbb:any){
+        return this.http.post(`${this.url}`, osbb)
+            .map(res => res.json().data);
     }
 }

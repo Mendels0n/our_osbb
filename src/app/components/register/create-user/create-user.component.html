@@ -1,5 +1,5 @@
 <div class="row">
-	<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="register()" [formGroup]="registerUser" novalidate>
+	<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="register()" [formGroup]="registerUser" novalidate [@moveInLeft]="state">
 		<h3 class="text-center">Регистрация жильца ОСББ</h3>
 		<div class="form-group">
 			<label>Имя</label>

@@ -1,6 +1,6 @@
-<h2>Выберите ОСББ</h2>
-<div class="row">
-  <div *ngFor="let item of osb" class="col-sm-6 col-md-2">
+<div class="row" [@moveInLeft]="state">
+  <h3 class="text-center">Выберите ОСББ</h3>
+  <div *ngFor="let item of osbb" class="col-xs-12 col-sm-6 col-md-3" [@fallIn]="state">
     <div class="thumbnail">
       <div class="caption">
         <h4>{{item.name}}</h4>
@@ -10,6 +10,6 @@
     </div>
   </div>
 </div>
-<div class="create-chief">
+<div class="create-chief" [@moveInLeft]="state">
   <button type="button" class="btn btn-primary" [routerLink]="['/create-chief']">Создать ОСББ</button>
 </div>
