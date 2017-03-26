@@ -40,15 +40,7 @@ export class CreateChiefComponent {
 	}
 	register(){
 		this.model.phone = '+380'+ this.phone;
-		this.service.createOsbb(this.model).subscribe(
-			data => {
-				this.router.navigate(['/']);
-				console.log(this.model);
-			},
-			error => {
-				console.log(error);
-			}
-		);
+		console.log(this.model);
 	}
 
 }

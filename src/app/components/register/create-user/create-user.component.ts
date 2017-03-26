@@ -37,10 +37,8 @@ export class CreateUserComponent implements OnInit {
 
 		ngOnInit() {
 			this.osbbID = this.route.snapshot.params['id'];
-			this.service.getOsbbb(this.osbbID).subscribe(
-				data => {
-					this.data = data;
-				});
+			this.service.getOsbb(this.osbbID)
+				.then(data => {this.data = data;});
 		}
 		
 		register(){

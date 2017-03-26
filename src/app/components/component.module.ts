@@ -5,6 +5,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { RegisterModule } from './register/register.module';
 import { HomeModule } from './home/home.module';
+import { LoginModule } from "./login/login.module";
 
 
 
@@ -14,6 +15,7 @@ import { HomeModule } from './home/home.module';
 		FormsModule,
 		ReactiveFormsModule,		
 		HomeModule,
+		LoginModule,
 		RegisterModule
 	],
 	declarations: [ 

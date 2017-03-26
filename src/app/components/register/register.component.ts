@@ -15,8 +15,8 @@ export class RegisterComponent implements OnInit{
 
 	constructor(private service:OsbbService) {}
 	ngOnInit() {
-		this.service.getOsbb()
-			.subscribe(data => {
+		this.service.getAll()
+			.then(data => {
 				this.osbb = data;
 			});
 	}
