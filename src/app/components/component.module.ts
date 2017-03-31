@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { RegisterModule } from './register/register.module';
@@ -10,17 +10,17 @@ import { LoginModule } from "./login/login.module";
 
 
 @NgModule({
-	imports: [ 
+	imports: [
 		CommonModule,
 		FormsModule,
-		ReactiveFormsModule,		
+		ReactiveFormsModule,
 		HomeModule,
 		LoginModule,
 		RegisterModule
 	],
-	declarations: [ 
+	declarations: [
 	],
-	exports: [ 
+	exports: [
 	],
 	providers: [ ]
 })

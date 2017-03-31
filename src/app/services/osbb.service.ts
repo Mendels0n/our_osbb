@@ -1,34 +1,26 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
-import 'rxjs/Observable';
+import { Http, Response, RequestOptions, Headers} from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { OSBB } from '../models/osbb.model'
 
-let OSBB = [
-    { id: 1, name: 'ул. Комарова 87', street:'123' },
-    { id: 2, name: 'пр. Комарова 25', street:'123' },
-    { id: 3, name: 'ул. Комарова 232', street:'123' },
-    { id: 4, name: 'ул. Комарова 232', street:'123' },
-    { id: 5, name: 'ул. Комарова 232', street:'123' },
-    { id: 6, name: 'ул. Комарова 232', street:'123' },
-    { id: 7, name: 'ул. Комарова 232', street:'123' },
-    { id: 8, name: 'ул. Комарова 232', street:'123' },
-    { id: 9, name: 'ул. Комарова 232', street:'123' },
-    { id: 10, name: 'ул. Комарова 232', street:'123' },
-    { id: 11, name: 'ул. Комарова 232', street:'123' }
-];
-let promise =  Promise.resolve(OSBB);
 @Injectable()
 export class OsbbService {
-    constructor(private http:Http) {
-
-    }
-    getAll() {
-        return promise;
-    }
-    getOsbb(id:number){
-        return promise
-            .then(osbb => osbb.find(x => x.id == id));
-    }
-    createOsbb(osbb:any){
-        console.log(osbb);
-    }
+  url : string;
+  constructor(private http:Http) {
+    this.url = 'https://our-osbb.herokuapp.com';
+  }
+  getAll() {
+    return this.http.get(`${this.url}/api/osbbs`)
+    .map((res : Response) => res.json());
+  }
+  createOsbb(model:OSBB){
+    return this.http.post(`${this.url}/api/osbbs`, JSON.stringify({osbb:model}), this.headers())
+    .map((res : Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  private headers () {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return new RequestOptions({ headers });
+  }
 }

@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreateUserComponent } from './create-user/create-user.component';
-import { CreateChiefComponent } from './create-chief/create-chief.component';
 import { RegisterComponent } from "./register.component";
 
 const registerRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'create-user/:id',  component: CreateUserComponent },
-  { path: 'create-chief', component: CreateChiefComponent }
+  { path: 'create', component: CreateUserComponent},
+  { path: 'create/:id',  component: CreateUserComponent }
 ];
 
 @NgModule({

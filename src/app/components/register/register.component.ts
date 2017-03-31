@@ -10,15 +10,23 @@ import { moveInLeft, fallIn } from "../../router.animations";
 	animations: [fallIn(), moveInLeft()]
 })
 export class RegisterComponent implements OnInit{
-	osbb: any;
+	osbb:any;
+	 loading: boolean;
 	state:string = '';
 
-	constructor(private service:OsbbService) {}
+	constructor(private OsbbService:OsbbService) {}
 	ngOnInit() {
-		this.service.getAll()
-			.then(data => {
+		this.loading = true;
+		this.OsbbService.getAll()
+		.subscribe(
+			data => {
 				this.osbb = data;
-			});
+				this.loading = false;
+			},
+			error => {
+				console.log(error);
+			}
+		);
 	}
 
 }

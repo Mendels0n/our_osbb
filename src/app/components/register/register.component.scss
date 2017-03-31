@@ -5,3 +5,13 @@
 .caption{
 	text-align: center;
 }
+.loader{
+	display: inline-block;
+	text-align: center;
+	padding: 10px 0 10px 0;
+}
+
+svg path,
+svg rect{
+  fill: #FF6700;
+}

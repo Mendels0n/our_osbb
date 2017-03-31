@@ -7,11 +7,13 @@ import { moveInLeft } from "../../router.animations";
 @Component({
     selector: 'login',
     templateUrl: 'login.component.html',
+    styleUrls:['login.component.scss'],
     animations: [moveInLeft()]
 })
 export class LoginComponent implements OnInit {
     user:any ={};
     loginForm:FormGroup;
+    error:string;
 
     constructor(private service: UserService, private fb: FormBuilder) {
         this.loginForm = this.fb.group({
@@ -24,10 +26,10 @@ export class LoginComponent implements OnInit {
         this.service.signIn(this.user.login, this.user.password)
             .subscribe(
                 data =>{
-                    console.log('+');
+                   alert('Success');
                 },
                 error =>{
-                    console.log(error);
+                    this.error = error;
                 }
             );
     }
