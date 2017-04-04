@@ -1,0 +1,103 @@
+<div class="row" *ngIf="osbbForm">
+	<form  class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="changes()" [formGroup]="registerOsbb"  novalidate [@fallIn]="state">
+		<h3 class="text-center">Регистрация ОСББ</h3>
+		<div class="form-group">
+			<label>Страна</label>
+			<input type="text" name="country" [(ngModel)]="model.country" class="form-control" formControlName="country" placeholder="Cтрана"/>
+			<div *ngIf="registerOsbb.controls['country'].invalid && registerOsbb.controls['country'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Город</label>
+			<input type="text" name="city" [(ngModel)]="model.city" class="form-control" formControlName="city" placeholder="Город"/>
+			<div *ngIf="registerOsbb.controls['city'].invalid && registerOsbb.controls['city'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-8">
+				<label>Улица</label>
+				<input type="text" name="street" [(ngModel)]="model.street" class="form-control" formControlName="street" placeholder="Улица"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label>№ дома</label>
+				<input type="text" name="houseNumber" [(ngModel)]="model.house_number" class="form-control" formControlName="houseNumber" placeholder="Адрес ОСББ"/>
+			</div>
+		</div>
+		<div class="form-group" *ngIf="registerOsbb.controls['street'].invalid && registerOsbb.controls['street'].touched">
+			<div  class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="form-group">
+			<label>№ ОСББ</label>
+			<input type="text" name="osbbNumber" [(ngModel)]="model.osbb_number" class="form-control" formControlName="osbbNumber"/>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-default" [disabled]="registerOsbb.invalid">Далее</button>
+		</div>
+	</form>
+</div>
+<!-- Create user and chief-->
+<div class="row" *ngIf="userForm">
+	<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="register()" [formGroup]="registerUser" novalidate [@moveInLeft]="state">
+		<h3 class="text-center" *ngIf="osbbID">Регистрация жителя ОСББ</h3>
+		<h3 class="text-center" *ngIf="!osbbID">Регистрация главы ОСББ</h3>
+		<alert type="danger" *ngIf="error">
+			<strong>Oh snap!</strong> {{error}}
+		</alert>
+		<div class="form-group">
+			<label>Имя</label>
+			<input type="text" [(ngModel)]="model.name" name="firstName" class="form-control"  formControlName="name" placeholder="Имя">
+			<div *ngIf="registerUser.controls['name'].invalid && registerUser.controls['name'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="row" *ngIf="osbbID">
+			<div class="form-group col-md-8">
+				<label>ОСББ</label>
+				<input type="text" name="osbb"  class="form-control" value="ул. {{osbb?.street}} {{osbb?.house_number}}" readonly>
+			</div>
+			<div class="form-group col-md-4">
+				<label>№ Квартиры</label>
+				<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
+			</div>
+		</div>
+		<div class="row" *ngIf="!osbbID">
+			<div class="form-group col-md-8">
+				<label>ОСББ</label>
+				<input type="text" name="osbb"  class="form-control" value="ул. {{model.street}} {{model.houseNumber}}" readonly>
+			</div>
+			<div class="form-group col-md-4">
+				<label>№ Квартиры</label>
+				<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
+			</div>
+		</div>
+		<div class="form-group" *ngIf="registerUser.controls['apartment'].invalid && registerUser.controls['apartment'].touched">
+			<div  class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Электронная почта</label>
+			<input type="text" name="email" [(ngModel)]="model.email" class="form-control" formControlName="email" placeholder="Емейл"/>
+			<div *ngIf="registerUser.controls['email'].invalid && registerUser.controls['email'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле. <i>john@doe.com</i>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Пароль</label>
+			<div class="input-group">
+				<input type="password" name="password" [(ngModel)]="model.password" class="form-control" formControlName="password" placeholder="Пароль" #pass/>
+				<div [readPassword]="pass" class="input-group-addon"><img src="../../../../assets/svg/eye.svg" alt="Посмотреть пароль" title="Посмотреть пароль"></div>
+			</div>
+			<div *ngIf="registerUser.controls['password'].invalid && registerUser.controls['password'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-default" [disabled]="registerUser.invalid">Подключится</button>
+		</div>
+	</form>
+</div>

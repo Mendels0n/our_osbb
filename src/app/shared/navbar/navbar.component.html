@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" [routerLink]="['/']">{{title}}</a>
+			<button type="button" class="navbar-toggle collapsed visible-xs" (click)="isCollapsed = !isCollapsed">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+					<path fill="#dddddd" d="M1 3h14v3h-14zM1 7h14v3h-14zM1 11h14v3h-14z"></path>
+				</svg>
+			</button>
+		</div>
+		<div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed">
+			<div>
+				<ul class="nav navbar-nav visible-xs" *ngIf="!userService.checkToken()">
+					<li><a [routerLink]="['/register']" routerLinkActive="active">Регистрация</a></li>
+					<li><a  [routerLink]="['/login']" routerLinkActive="active">Войти</a></li>
+				</ul>
+				<ul class="nav navbar-nav visible-xs" *ngIf="userService.checkToken()">
+					<li ><a (click)="logout()">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		<ul class="nav navbar-nav navbar-right" *ngIf="!userService.checkToken()">
+			<li class="hidden-xs"><a [routerLink]="['/register']" routerLinkActive="active">Регистрация</a></li>
+			<li class="hidden-xs"><a [routerLink]="['/login']" routerLinkActive="active">Войти</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right" *ngIf="userService.checkToken()">
+			<li class="hidden-xs"><a (click)="logout()">Выйти</a></li>
+		</ul>
+	</div>
+</nav>
