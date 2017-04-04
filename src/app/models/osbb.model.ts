@@ -4,4 +4,5 @@ export class OSBB {
     street:string;
     house_number:string;
     osbb_number:number;
+    [propName: string]: any;
 }

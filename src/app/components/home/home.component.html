@@ -1,6 +1,10 @@
-<div [@moveInLeft]="state">
+<div [@moveInLeft]="state" *ngIf="!userService.checkToken()">
     <h1>{{title}}</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit molestias reprehenderit iusto, obcaecati sint cum quasi! Sapiente ab dolore in qui accusamus aliquam pariatur. Magnam ipsa harum, optio nobis delectus!</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit molestias reprehenderit iusto, obcaecati sint cum quasi! Sapiente ab dolore in qui accusamus aliquam pariatur. Magnam ipsa harum, optio nobis delectus!</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit molestias reprehenderit iusto, obcaecati sint cum quasi! Sapiente ab dolore in qui accusamus aliquam pariatur. Magnam ipsa harum, optio nobis delectus!</p>
+</div>
+<div class="row" *ngIf="userService.checkToken()" [@moveInLeft]="state">
+    <h2>Новости</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta beatae aliquam libero? Reprehenderit officia illum dolorem nobis, veniam deserunt est quas. Magni accusamus quibusdam ex quas veniam similique, saepe vel!</p>
 </div>

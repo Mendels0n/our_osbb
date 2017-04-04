@@ -1,6 +1,6 @@
 <div class="row" [@moveInLeft]="state">
   <h3 class="text-center">Выберите ОСББ</h3>
-  <div class="col-md-6 col-md-offset-3 loader loader--style8 " title="7" *ngIf="loading" >
+  <div class="col-md-6 col-md-offset-3 loader loader--style8 " title="7" *ngIf="loading">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
       <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
@@ -8,30 +8,35 @@
         <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
         <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
       </rect>
-      <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
-        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+      <rect x="8" y="10" width="4" height="10" fill="#333" opacity="0.2">
+        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite"
+        />
+        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite"
+        />
         <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
       </rect>
-      <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
-        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+      <rect x="16" y="10" width="4" height="10" fill="#333" opacity="0.2">
+        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite"
+        />
+        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite"
+        />
         <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
       </rect>
     </svg>
   </div>
-<div *ngIf="!loading">
-  <div *ngFor="let item of osbb" class="col-xs-12 col-sm-6 col-md-3" [@fallIn]="state">
-    <div class="thumbnail">
-      <div class="caption">
-        <h4>{{item.country}}, {{item.city}}</h4>
-        <h4>{{item.street}} {{item.house_number}}</h4>
-        <p *ngIf="item.osbb_number">{{item.osbb_number}}</p>
-        <p><a [routerLink]="['/create',item.id]" class="btn btn-success" role="button">Подключится</a></p>
+  <div *ngIf="osbb?.length === 0" class="text-center">No Results</div>
+  <div *ngIf="!loading">
+    <div *ngFor="let item of osbb" class="col-xs-12 col-sm-6 col-md-3" [@fallIn]="state">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4>{{item.country}}, {{item.city}}</h4>
+          <h4>{{item.street}} {{item.house_number}}</h4>
+          <p *ngIf="item.osbb_number">{{item.osbb_number}}</p>
+          <p><a [routerLink]="['/create',item.id]" class="btn btn-success" role="button">Подключится</a></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <div class="create-chief" [@moveInLeft]="state">
   <button type="button" class="btn btn-primary" [routerLink]="['/create']">Создать ОСББ</button>
