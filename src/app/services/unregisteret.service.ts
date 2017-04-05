@@ -12,7 +12,7 @@ export class UnregisteretService {
     getAll(){
         return this.http.get(`${this.url}/api/unregisteret`, this.headers())
         .map((res:Response) => res.json())
-        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+        .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
     }
 
     private headers() {

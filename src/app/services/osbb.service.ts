@@ -20,7 +20,7 @@ export class OsbbService {
     }
     return this.http.post(`${this.url}/api/osbbs`, data, this.headers())
     .map((res : Response) => res.json())
-    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
   private headers () {
     let headers = new Headers();

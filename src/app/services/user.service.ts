@@ -23,7 +23,7 @@ export class UserService {
       localStorage.setItem('token', JSON.stringify(token));
       localStorage.setItem('user_id', JSON.stringify(id));
     })
-    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
 
   create (model:User) {
@@ -34,7 +34,7 @@ export class UserService {
     }
     return this.http.post(`${this.url}/api/users`,data, this.headers())
     .map((response:Response) => {response.json()})
-    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
   checkToken(){
     return !!localStorage.getItem('token');
