@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component'
 import { CollapseModule } from "ng2-bootstrap/collapse";
 
 @NgModule({
@@ -11,10 +12,12 @@ import { CollapseModule } from "ng2-bootstrap/collapse";
         CollapseModule.forRoot()
     ],
     declarations: [ 
-        NavbarComponent
+        NavbarComponent,
+        SidebarComponent
     ],
     exports: [
-        NavbarComponent
+        NavbarComponent,
+        SidebarComponent
     ],
     providers: [
     ]

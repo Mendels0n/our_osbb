@@ -6,6 +6,7 @@ import { moveInLeft, fallIn } from "../../../router.animations";
 import { OsbbService } from "../../../services/osbb.service";
 import { UserService } from '../../../services/user.service';
 import { OSBB } from "../../../models/osbb.model";
+import { User } from "../../../models/user.model";
 
 @Component({
     selector: 'create-user',
@@ -15,7 +16,6 @@ import { OSBB } from "../../../models/osbb.model";
 })
 export class CreateUserComponent implements OnInit {
     osbbID: number;
-    data: OSBB;
     registerUser: FormGroup;
     registerOsbb: FormGroup;
     osbbForm: boolean;
@@ -23,11 +23,12 @@ export class CreateUserComponent implements OnInit {
     osbb: OSBB;
     error: string;
     state: string = '';
-    model: any = {};
+    model: User;
 
     constructor(private fb: FormBuilder, private activeRoute: ActivatedRoute, private route: Router,
         private osbbService: OsbbService, private userService: UserService) {
-        this.data = new OSBB;
+        this.osbb = new OSBB;
+        this.model = new User;
         this.osbbID = this.activeRoute.snapshot.params['id'];
         this.registerOsbb = this.fb.group({
             country: ['', Validators.compose([Validators.required])],
@@ -84,13 +85,16 @@ export class CreateUserComponent implements OnInit {
                 })
         } else {
             this.model.role = 2;
-            this.model.street = this.model.street + ' ' + this.model.house_number;
-            this.osbbService.createOsbb(this.model).subscribe(
+            this.model.street = this.osbb.street + ' ' + this.osbb.house_number;
+            this.osbbService.createOsbb(this.osbb).subscribe(
                 data => {
                     this.model.osbb_id = data.id;
                     this.userService.create(this.model).subscribe(
                         data => {
                             this.route.navigate(['/login']);
+                        },
+                        error => {
+                            this.error = error;
                         }
                     )
                 }

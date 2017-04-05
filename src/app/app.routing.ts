@@ -3,12 +3,24 @@ import {ModuleWithProviders} from "@angular/core";
 
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
+import { NewsfeedComponent } from './components/home/newsfeed/newsfeed.component';
+
 
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, pathMatch: 'full'},
-    { path: 'login', component: LoginComponent },
-    { path: '**', redirectTo: '' }
+     {
+         path: '',
+         loadChildren: 'app/components/home/home.module#HomeModule',
+         data: {
+             preload: true
+         }
+     }, {
+         path: 'login',
+         component: LoginComponent
+     }, {
+         path: '**',
+         redirectTo: ''
+     }
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -3,14 +3,14 @@
 		<h3 class="text-center">Регистрация ОСББ</h3>
 		<div class="form-group">
 			<label>Страна</label>
-			<input type="text" name="country" [(ngModel)]="model.country" class="form-control" formControlName="country" placeholder="Cтрана"/>
+			<input type="text" name="country" [(ngModel)]="osbb.country" class="form-control" formControlName="country" placeholder="Cтрана"/>
 			<div *ngIf="registerOsbb.controls['country'].invalid && registerOsbb.controls['country'].touched" class="alert alert-danger">
 				Пожалуйста, заполните обязательные поле.
 			</div>
 		</div>
 		<div class="form-group">
 			<label>Город</label>
-			<input type="text" name="city" [(ngModel)]="model.city" class="form-control" formControlName="city" placeholder="Город"/>
+			<input type="text" name="city" [(ngModel)]="osbb.city" class="form-control" formControlName="city" placeholder="Город"/>
 			<div *ngIf="registerOsbb.controls['city'].invalid && registerOsbb.controls['city'].touched" class="alert alert-danger">
 				Пожалуйста, заполните обязательные поле.
 			</div>
@@ -18,11 +18,11 @@
 		<div class="row">
 			<div class="form-group col-md-8">
 				<label>Улица</label>
-				<input type="text" name="street" [(ngModel)]="model.street" class="form-control" formControlName="street" placeholder="Улица"/>
+				<input type="text" name="street" [(ngModel)]="osbb.street" class="form-control" formControlName="street" placeholder="Улица"/>
 			</div>
 			<div class="form-group col-md-4">
 				<label>№ дома</label>
-				<input type="text" name="houseNumber" [(ngModel)]="model.house_number" class="form-control" formControlName="houseNumber" placeholder="Адрес ОСББ"/>
+				<input type="text" name="houseNumber" [(ngModel)]="osbb.house_number" class="form-control" formControlName="houseNumber" placeholder="Адрес ОСББ"/>
 			</div>
 		</div>
 		<div class="form-group" *ngIf="registerOsbb.controls['street'].invalid && registerOsbb.controls['street'].touched">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="form-group">
 			<label>№ ОСББ</label>
-			<input type="text" name="osbbNumber" [(ngModel)]="model.osbb_number" class="form-control" formControlName="osbbNumber"/>
+			<input type="text" name="osbbNumber" [(ngModel)]="osbb.osbb_number" class="form-control" formControlName="osbbNumber"/>
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-default" [disabled]="registerOsbb.invalid">Далее</button>
@@ -67,7 +67,7 @@
 		<div class="row" *ngIf="!osbbID">
 			<div class="form-group col-md-8">
 				<label>ОСББ</label>
-				<input type="text" name="osbb"  class="form-control" value="ул. {{model.street}} {{model.houseNumber}}" readonly>
+				<input type="text" name="osbb"  class="form-control" value="ул. {{osbb.street}} {{osbb.house_number}}" readonly>
 			</div>
 			<div class="form-group col-md-4">
 				<label>№ Квартиры</label>

@@ -3,7 +3,7 @@ export class User {
   name:string;
   email:string;
   room:number;
-  ossb_Id:number;
+  osbb_id:number;
   password:string;
   role:number;
   approved?:boolean
