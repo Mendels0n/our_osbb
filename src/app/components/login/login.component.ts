@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
 import { UserService } from "../../services/user.service";
 import { moveInLeft } from "../../router.animations";
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     loginForm:FormGroup;
     error:string;
 
-    constructor(private service: UserService, private fb: FormBuilder) {
+    constructor(private service: UserService, private fb: FormBuilder, private router:Router) {
         this.loginForm = this.fb.group({
             login: ['', Validators.compose([Validators.required])],
             password: ['',Validators.compose([Validators.required])]
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.service.signIn(this.user.login, this.user.password)
             .subscribe(
                 data =>{
-                   alert('Success');
+                   this.router.navigate(['/'])
                 },
                 error =>{
                     this.error = error;

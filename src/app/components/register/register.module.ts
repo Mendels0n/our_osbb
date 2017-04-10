@@ -8,6 +8,7 @@ import { RegisterComponent } from './register.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { RegisterRoutingModule } from './register.routing';
 import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	imports: [
@@ -16,8 +17,8 @@ import { DirectivesModule } from '../../directives/directives.module';
 		ReactiveFormsModule,
 		HttpModule,
 		DirectivesModule,
+		PipesModule,
 		AlertModule.forRoot(),
-
 		RegisterRoutingModule
 	],
 	declarations: [
@@ -25,7 +26,7 @@ import { DirectivesModule } from '../../directives/directives.module';
 		CreateUserComponent
 	],
 	exports: [
-		RegisterComponent
+		RegisterComponent,
 	],
 	providers: [ ]
 })

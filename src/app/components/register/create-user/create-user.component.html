@@ -36,6 +36,10 @@
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-default" [disabled]="registerOsbb.invalid">Далее</button>
+			<button type="submit" class="btn btn-default" (click)="back()">Назад</button>
+		</div>
+		<div class="form-group float-left">
+			
 		</div>
 	</form>
 </div>
@@ -49,8 +53,15 @@
 		</alert>
 		<div class="form-group">
 			<label>Имя</label>
-			<input type="text" [(ngModel)]="model.name" name="firstName" class="form-control"  formControlName="name" placeholder="Имя">
-			<div *ngIf="registerUser.controls['name'].invalid && registerUser.controls['name'].touched" class="alert alert-danger">
+			<input type="text" [(ngModel)]="model.first_name" name="firstName" class="form-control"  formControlName="firstName" placeholder="Имя">
+			<div *ngIf="registerUser.controls['firstName'].invalid && registerUser.controls['firstName'].touched" class="alert alert-danger">
+				Пожалуйста, заполните обязательные поле.
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Фамилия</label>
+			<input type="text" [(ngModel)]="model.last_name" name="lastName" class="form-control"  formControlName="lastName" placeholder="Фамилия">
+			<div *ngIf="registerUser.controls['lastName'].invalid && registerUser.controls['lastName'].touched" class="alert alert-danger">
 				Пожалуйста, заполните обязательные поле.
 			</div>
 		</div>
@@ -81,10 +92,17 @@
 		</div>
 		<div class="form-group">
 			<label>Электронная почта</label>
-			<input type="text" name="email" [(ngModel)]="model.email" class="form-control" formControlName="email" placeholder="Емейл"/>
+			<input type="text" name="email" [(ngModel)]="model.email" class="form-control" formControlName="email" placeholder=""/>
 			<div *ngIf="registerUser.controls['email'].invalid && registerUser.controls['email'].touched" class="alert alert-danger">
-				Пожалуйста, заполните обязательные поле. <i>john@doe.com</i>
+				Пожалуйста, заполните обязательные поле.
+				<p *ngIf="registerUser.get('email').hasError('pattern')" >
+					E-mail введен неверно.
+				</p>
+				<p *ngIf="registerUser.get('email').hasError('emailIdTaken')">
+					E-mail заннят.
+				</p>
 			</div>
+	
 		</div>
 		<div class="form-group">
 			<label>Пароль</label>
@@ -97,7 +115,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-default" [disabled]="registerUser.invalid">Подключится</button>
+			<button type="submit" class="btn btn-default" [disabled]="registerUser.invalid">Подключиться</button>
 		</div>
 	</form>
 </div>

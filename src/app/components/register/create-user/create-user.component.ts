@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
+import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { moveInLeft, fallIn } from "../../../router.animations";
+import { checkUniqueEmail } from '../../../services/email-validator';
 
 import { OsbbService } from "../../../services/osbb.service";
 import { UserService } from '../../../services/user.service';
@@ -21,11 +23,12 @@ export class CreateUserComponent implements OnInit {
     osbbForm: boolean;
     userForm: boolean;
     osbb: OSBB;
+    email:FormControl;
     error: string;
     state: string = '';
     model: User;
 
-    constructor(private fb: FormBuilder, private activeRoute: ActivatedRoute, private route: Router,
+    constructor(private fb: FormBuilder,private location:Location, private activeRoute: ActivatedRoute, private route: Router,
         private osbbService: OsbbService, private userService: UserService) {
         this.osbb = new OSBB;
         this.model = new User;
@@ -34,14 +37,15 @@ export class CreateUserComponent implements OnInit {
             country: ['', Validators.compose([Validators.required])],
             city: ['', Validators.compose([Validators.required])],
             street: ['', Validators.compose([Validators.required])],
-            houseNumber: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(5)])],
-            osbbNumber: ['', Validators.compose([Validators.pattern("^(0|[1-9][0-9]*)$")])]
+            houseNumber: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]/*)$"), Validators.maxLength(5)])],
+            osbbNumber: ['', Validators.compose([Validators.required,,Validators.pattern("^(0|[1-9][0-9]*)$")])]
         });
         this.registerUser = this.fb.group({
-            name: ['', Validators.compose([Validators.required])],
-            apartment: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(3)])],
-            email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")])],
-            password: ['', Validators.compose([Validators.required])]
+            firstName: ['', Validators.compose([Validators.required,Validators.minLength(2)])],
+            lastName: ['', Validators.compose([Validators.required,Validators.minLength(2)])],
+            apartment: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(4)])],
+            email: ['',[Validators.required,Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")],[checkUniqueEmail(this.userService, this)]],
+            password: ['', Validators.compose([Validators.required,Validators.minLength(6)])]
         });
     }
 
@@ -55,13 +59,28 @@ export class CreateUserComponent implements OnInit {
         }
         this.loadOsbb();
     }
-
+    back(){
+        this.location.back();
+    }
+    emailValidation(control:any):any{
+        return this.check(control);
+    }
+    check(control:any){
+        console.log(control.value);
+        this.userService.checkEmeil(control.value)
+        .debounceTime(1000)
+        .subscribe(
+            data =>{
+              console.log(data);
+            }
+        )
+    }
     loadOsbb() {
         if (this.osbbID) {
-            this.osbbService.getAll()
+            this.osbbService.getOsbb(this.osbbID)
             .subscribe(
                 osbb => {
-                    this.osbb = osbb.find((item: any) => item.id == this.osbbID);
+                    this.osbb = osbb;
                 });
         }
     }
@@ -79,6 +98,7 @@ export class CreateUserComponent implements OnInit {
             this.userService.create(this.model).subscribe(
                 data => {
                     this.route.navigate(['/login']);
+                    this.route.navigate
                 },
                 error => {
                     this.error = error;

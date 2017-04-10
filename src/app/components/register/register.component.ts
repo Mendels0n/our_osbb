@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit{
 	state:string = '';
 
 	constructor(private OsbbService:OsbbService) {}
+
 	ngOnInit() {
 		this.loading = true;
 		this.OsbbService.getAll()

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsfeedService } from '../../../services/newsfeed.service'; 
+import { UserService } from '../../../services/user.service'; 
 
 @Component({
     selector: 'newsfeed',
@@ -6,7 +8,28 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['newsfeed.component.scss']
 })
 export class NewsfeedComponent implements OnInit {
-    constructor() { }
+    news: any;
+    constructor(private newsfeedService: NewsfeedService,private userService:UserService) {}
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.loadNews();
+    }
+    loadNews() {
+        this.newsfeedService.allNews().subscribe(
+            news => {
+                this.news = news;
+                console.log(news);
+            },
+            error => {
+                console.log(error);
+            }
+        )
+    }
+    loadUser(id:number){
+        this.userService.userById(id).subscribe(
+            user => {
+                console.log(user);
+            }
+        )
+    }
 }

@@ -1,1 +1,19 @@
-Newsfeed
+<div class="row">
+    <div *ngIf="news?.length === 0" class="text-center">No Results</div>
+    <div class="well" *ngFor="let item of news">
+        <div class="media">
+            <div class="media-body ">
+                <h4 class="media-heading">{{item.title}}</h4>
+                <p class="text-right"></p>
+                <p>{{item.content}}</p>
+                <ul class="list-inline list-unstyled">
+                    <li><span><i class="glyphicon glyphicon-calendar"></i> {{item.created_at | date:'yyyy-MM-dd HH:mm'}} </span></li>
+                    <li>|</li>
+                    <span><i class="glyphicon glyphicon-comment"></i> 2 комментарии</span>
+                    <li>|</li>
+                    <span><a [routerLink]="[ '/newsfeed', item.id ]">Читать</a></span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

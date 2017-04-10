@@ -13,6 +13,10 @@ export class OsbbService {
     return this.http.get(`${this.url}/api/osbbs`)
     .map((res : Response) => res.json());
   }
+  getOsbb(id:any){
+    return this.http.get(`${this.url}/api/osbbs/${id}`)
+    .map((res : Response) => res.json());
+  }
   createOsbb(model:OSBB){
     let data = new URLSearchParams();
     for(let key in model){

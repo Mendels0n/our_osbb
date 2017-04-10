@@ -1,5 +1,12 @@
 <div class="row" [@moveInLeft]="state">
   <h3 class="text-center">Выберите ОСББ</h3>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <input type="text" name="city" [(ngModel)]="term" class="form-control" placeholder="Поиск" />
+      </div>
+    </div>
+  </div>
   <div class="col-md-6 col-md-offset-3 loader loader--style8 " title="7" *ngIf="loading">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -24,15 +31,23 @@
       </rect>
     </svg>
   </div>
+</div>
+<div class="row">
   <div *ngIf="osbb?.length === 0" class="text-center">No Results</div>
   <div *ngIf="!loading">
-    <div *ngFor="let item of osbb" class="col-xs-12 col-sm-6 col-md-3" [@fallIn]="state">
+    <div *ngFor="let item of osbb | search:term" class="col-xs-12 col-sm-6 col-md-3" [@fallIn]="state">
       <div class="thumbnail">
         <div class="caption">
-          <h4>{{item.country}}, {{item.city}}</h4>
+          <h4>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+                <title>office</title>
+                <path d="M0 32h16v-32h-16v32zM10 4h4v4h-4v-4zM10 12h4v4h-4v-4zM10 20h4v4h-4v-4zM2 4h4v4h-4v-4zM2 12h4v4h-4v-4zM2 20h4v4h-4v-4zM18 10h14v2h-14zM18 32h4v-8h6v8h4v-18h-14z"></path>
+              </svg>
+            {{item.country}}, {{item.city}}
+          </h4>
           <h4>{{item.street}} {{item.house_number}}</h4>
-          <p *ngIf="item.osbb_number">{{item.osbb_number}}</p>
-          <p><a [routerLink]="['/create',item.id]" class="btn btn-success" role="button">Подключится</a></p>
+          <p>№{{item.osbb_number}}</p>
+          <p><a [routerLink]="['/create',item.id]" class="btn btn-success" role="button">Подключиться</a></p>
         </div>
       </div>
     </div>

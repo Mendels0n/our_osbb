@@ -1,1 +1,44 @@
-UserList
+<div class="row">
+    <table class="table table-hover">
+        <tr class="info">
+            <th>Электронная почта жителя</th>
+            <th>№ Квартиры</th>
+            <th>Действия</th>
+        </tr>
+        <tr *ngFor="let item of users">
+            <td>{{item.email}}</td>
+            <td>{{item.room}}</td>
+            <td>
+                <div class="btn-group" dropdown>
+                    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                     Действия <span class="caret"></span>
+                     </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item" (click)="aprove(item.id)">Подключить жителя</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="staticModal.show()">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+            <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title pull-left">Удалить жителя</h4>
+                            <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                 </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Причина удаления</label>
+                                <textarea class="form-control" [(ngModel)]="reason" rows="3"></textarea>
+                                <button type="button" class="btn btn-primary pull-right btn-delete" aria-label="Удалить" (click)="declined(item.id)">Удалить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tr>
+    </table>
+</div>
