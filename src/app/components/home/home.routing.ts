@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { NewsDetailComponent } from './newsfeed/news-detail/news-detail.component';
+import { NewsComponent } from './newsfeed/news/news.component';
 import { HomeComponent } from './home.component';
 import { UserListComponent } from './user-list/user-list.component';
 
@@ -18,6 +19,9 @@ const homeRoutes: Routes = [{
   },{
     path:'users',
     component: UserListComponent
+  },{
+    path:'create-news',
+    component: NewsComponent
   }]
 }, ];
 

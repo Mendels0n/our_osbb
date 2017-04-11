@@ -4,14 +4,11 @@
         <div class="media">
             <div class="media-body ">
                 <h4 class="media-heading">{{item.title}}</h4>
-                <p class="text-right"></p>
-                <p>{{item.content}}</p>
+                <p [name]="item.user_id"></p>
                 <ul class="list-inline list-unstyled">
                     <li><span><i class="glyphicon glyphicon-calendar"></i> {{item.created_at | date:'yyyy-MM-dd HH:mm'}} </span></li>
                     <li>|</li>
-                    <span><i class="glyphicon glyphicon-comment"></i> 2 комментарии</span>
-                    <li>|</li>
-                    <span><a [routerLink]="[ '/newsfeed', item.id ]">Читать</a></span>
+                    <li><span><a [routerLink]="[ '/newsfeed', item.id ]">Читать</a></span></li>
                 </ul>
             </div>
         </div>

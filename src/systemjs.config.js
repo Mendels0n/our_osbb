@@ -19,6 +19,7 @@
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
+            "ng2-ckeditor": "npm:ng2-ckeditor",
             'moment': 'node_modules/moment/moment.js',
             'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
@@ -29,6 +30,10 @@
             app: {
                 main: './main.js',
                 defaultExtension: 'js'
+            },
+            "ng2-ckeditor": {
+                "main": "lib/index.js",
+                "defaultExtension": "js",
             },
             rxjs: {
                 defaultExtension: 'js'

@@ -37,12 +37,12 @@ export class UserService {
       data.append(key,model[key])
     }
     return this.http.post(`${this.url}/api/users`,data, this.headers())
-    .map((response:Response) => {response.json()})
+    .map((response:Response) => response.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
-  userById(id:number){
+  userById(id:any){
     return this.http.get(`${this.url}/api/users/${id}`, this.headers())
-    .map((response:Response) => {response.json()})
+    .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
   checkEmeil(emeil:string){

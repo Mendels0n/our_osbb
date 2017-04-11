@@ -9,6 +9,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class NewsfeedComponent implements OnInit {
     news: any;
+    comments:any;
     constructor(private newsfeedService: NewsfeedService,private userService:UserService) {}
 
     ngOnInit() {
@@ -18,17 +19,9 @@ export class NewsfeedComponent implements OnInit {
         this.newsfeedService.allNews().subscribe(
             news => {
                 this.news = news;
-                console.log(news);
             },
             error => {
                 console.log(error);
-            }
-        )
-    }
-    loadUser(id:number){
-        this.userService.userById(id).subscribe(
-            user => {
-                console.log(user);
             }
         )
     }
