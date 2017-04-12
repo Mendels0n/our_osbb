@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsfeedService } from '../../../services/newsfeed.service'; 
-import { UserService } from '../../../services/user.service'; 
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'newsfeed',
@@ -10,7 +11,7 @@ import { UserService } from '../../../services/user.service';
 export class NewsfeedComponent implements OnInit {
     news: any;
     comments:any;
-    constructor(private newsfeedService: NewsfeedService,private userService:UserService) {}
+    constructor(private newsfeedService: NewsfeedService,private userService:UserService,private router:Router) {}
 
     ngOnInit() {
         this.loadNews();
@@ -21,7 +22,10 @@ export class NewsfeedComponent implements OnInit {
                 this.news = news;
             },
             error => {
-                console.log(error);
+                if(error == 'Unauthorized. Invalid or expired token.'){
+                    localStorage.clear();
+                    this.router.navigate(['/login']);
+                }
             }
         )
     }

@@ -6,7 +6,20 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-    constructor() { }
+    role:string;
+    mainRole:string;
+    constructor() {
+       this.loadRole();
+       this.mainRole = "main";
+     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        console.log(this.role);
+        console.log(this.role == this.mainRole);
+    }
+    loadRole(){
+        this.role = localStorage.getItem('role');
+        this.role = this.role.replace(/"/g,'');
+        
+    }
 }

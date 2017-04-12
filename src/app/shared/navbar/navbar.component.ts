@@ -8,14 +8,17 @@ import { UserService } from '../../services/user.service';
     styleUrls: ['navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+    token:boolean;
     public isCollapsed: boolean = true;
     title: string;
 
     constructor(private userService: UserService, private router:Router) {
-        this.title = "ОСББ"
+        this.title = "ОСББ";
+        this.token = !!localStorage.getItem('token');
     }
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.token);
+    }
     
     logout(){
         localStorage.clear();

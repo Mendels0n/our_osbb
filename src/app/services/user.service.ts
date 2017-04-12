@@ -31,7 +31,6 @@ export class UserService {
   }
 
   create (model:User) {
-    console.log(model);
     let data = new URLSearchParams();
     for(let key in model){
       data.append(key,model[key])
@@ -51,9 +50,6 @@ export class UserService {
     return this.http.get(`${this.url}/api/users/check_email`, {search:data})
     .debounceTime(900)
     .map((response:Response) => response.json())
-  }
-  checkToken(){
-    return !!localStorage.getItem('token');
   }
   private headers() {
         let token = JSON.parse(localStorage.getItem('token'));

@@ -1,7 +1,8 @@
 <div class="">
   <nav class="">
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="['']">Новости</a></li>
-    <li routerLinkActive="active"><a [routerLink]="['/users']">Профиль</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/newsfeed']">Новости</a></li>
+    <li routerLinkActive="active"  *ngIf="role == mainRole" ><a [routerLink]="['/users']">Новые учасники</a></li>
     <li routerLinkActive="active"><a href="#">Messages</a></li>
+    <li routerLinkActive="active"  *ngIf="role == mainRole"><a [routerLink]="['/create-news']">Создать новость</a></li>
   </nav>
 </div>

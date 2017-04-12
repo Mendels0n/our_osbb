@@ -1,9 +1,11 @@
 <div class="panel panel-white post">
     <div class="post-footer">
-        <form novalidate (ngSubmit)="send()" [formGroup]="form">
+        <form novalidate (ngSubmit)="createComment()" [formGroup]="form">
             <div class="input-group col-md-6">
-                <input class="form-control" [(ngModel)]="comment" formControlName="comment" placeholder="Add a comment" type="text">
-                <div class="input-group-addon"></div>
+                <input class="form-control" [(ngModel)]="model.body" formControlName="comment" placeholder="Add a comment" type="text">
+                <div class="input-group-addon">
+                    <button type="submit" [disabled]="form.invalid">Send</button>
+                </div>
             </div>
         </form>
         <ul class="comments-list">
@@ -13,7 +15,7 @@
                 </a>
                 <div class="comment-body">
                     <div class="comment-heading">
-                        <h4 class="user" [name]="comment.user_id"></h4>
+                        <h4 class="user" [loadNames]="comment.user_id"></h4>
                         <h5 class="time">{{comment.created_at | date:'yyyy-MM-dd HH:mm'}}</h5>
                     </div>
                     <p>{{comment.body}}</p>

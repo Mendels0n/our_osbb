@@ -5,20 +5,20 @@
         </div>
         <div class="pull-right meta">
             <div class="title h5">
-               <p>Автор: <a><b [name]="news?.user_id"></b></a></p> 
+               <p>Автор: <a><b [loadNames]="news?.user_id"></b></a></p> 
             </div>
             <h6 class="text-muted time">{{news?.created_at | date:'yyyy-MM-dd HH:mm'}}</h6>
         </div>
     </div>
     <div class="post-description">
-        <p [innerHTML]="news?.content"></p>
+        <p [innerHTML]="news?.content | sanitizeHtml"></p>
         <div class="stats">
-            <a href="#" class="btn btn-default stat-item">
-                <i class="fa fa-thumbs-up icon"></i>2
+            <a (click)="deleteNews(news?.id)" class="btn btn-default stat-item">
+                Delete
             </a>
-            <a href="#" class="btn btn-default stat-item">
+            <!--<a href="#" class="btn btn-default stat-item">
                 <i class="fa fa-share icon"></i>12
-            </a>
+            </a>-->
         </div>
     </div>
 </div>

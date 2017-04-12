@@ -10,20 +10,20 @@
 		</div>
 		<div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed">
 			<div>
-				<ul class="nav navbar-nav visible-xs" *ngIf="!userService.checkToken()">
+				<ul class="nav navbar-nav visible-xs" *ngIf="!token">
 					<li><a [routerLink]="['/register']" routerLinkActive="active">Регистрация</a></li>
 					<li><a  [routerLink]="['/login']" routerLinkActive="active">Войти</a></li>
 				</ul>
-				<ul class="nav navbar-nav visible-xs" *ngIf="userService.checkToken()">
+				<ul class="nav navbar-nav visible-xs" *ngIf="token">
 					<li ><a (click)="logout()">Logout</a></li>
 				</ul>
 			</div>
 		</div>
-		<ul class="nav navbar-nav navbar-right" *ngIf="!userService.checkToken()">
+		<ul class="nav navbar-nav navbar-right" *ngIf="!token">
 			<li class="hidden-xs"><a [routerLink]="['/register']" routerLinkActive="active">Регистрация</a></li>
 			<li class="hidden-xs"><a [routerLink]="['/login']" routerLinkActive="active">Войти</a></li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" *ngIf="userService.checkToken()">
+		<ul class="nav navbar-nav navbar-right" *ngIf="token">
 			<li class="hidden-xs"><a (click)="logout()">Выйти</a></li>
 		</ul>
 	</div>

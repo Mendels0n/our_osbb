@@ -13,6 +13,15 @@ export class CommentsService {
         .map((res:Response) => res.json() )
         .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
+    create(model: any) {
+        let data = new URLSearchParams();
+        for (let key in model) {
+            data.append(key, model[key])
+        }
+        return this.http.post(`${this.url}/api/comment`, data, this.headers())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
+    }
     private headers() {
         let token = JSON.parse(localStorage.getItem('token'));
         let headers = new Headers();

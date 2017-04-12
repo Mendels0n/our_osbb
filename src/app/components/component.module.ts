@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterModule } from './register/register.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from "./login/login.module";
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 
 
@@ -19,8 +20,10 @@ import { LoginModule } from "./login/login.module";
 		RegisterModule
 	],
 	declarations: [
+		WelcomePageComponent
 	],
 	exports: [
+		WelcomePageComponent
 	],
 	providers: [ ]
 })

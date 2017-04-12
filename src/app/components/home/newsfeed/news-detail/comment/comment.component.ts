@@ -12,6 +12,7 @@ export class CommentComponent implements OnInit {
     form:FormGroup;
     newsId:any;
     comments:any;
+    model:any = {};
 
     constructor(private fb: FormBuilder,private activeRoute: ActivatedRoute, private commentsService:CommentsService) { 
         this.form = this.fb.group({
@@ -26,6 +27,15 @@ export class CommentComponent implements OnInit {
         this.commentsService.getComments(this.newsId).subscribe(
             comments =>{
                 this.comments = comments;
+            }
+        )
+    }
+    createComment(){
+        this.model.user_id = localStorage.getItem('user_id');
+        this.model.newsfeed_id = this.newsId;
+        this.commentsService.create(this.model).subscribe(
+            data => {
+                this.loadComments();
             }
         )
     }

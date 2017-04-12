@@ -19,6 +19,7 @@ import { DirectivesModule } from '../../directives/directives.module';
 import { UnregisteretService } from '../../services/unregisteret.service';
 import { NewsfeedService } from '../../services/newsfeed.service';
 import { CommentsService } from '../../services/comments.service';
+import { PipesModule } from '../../pipes/pipes.module'
 
 @NgModule({
 	imports: [ 
@@ -29,6 +30,7 @@ import { CommentsService } from '../../services/comments.service';
 		HomeRoutingModule,
 		DirectivesModule,
 		SharedModule,
+		PipesModule,
 		CKEditorModule,
 		BsDropdownModule.forRoot(),
 		ModalModule.forRoot(),

@@ -6,6 +6,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from "./app.component";
 import { ServiceModule } from "./services/service.module";
 import { SharedModule } from './shared/shared.module';
+import { AuthGuard } from './guards/auth.guards';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/shared.module';
         AppComponent
     ],
     providers: [
-        appRoutingProviders
+        appRoutingProviders,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })

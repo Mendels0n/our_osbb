@@ -1,10 +1,10 @@
 <div class="row">
     <div *ngIf="news?.length === 0" class="text-center">No Results</div>
-    <div class="well" *ngFor="let item of news">
+    <div class="well" *ngFor="let item of news | reverse">
         <div class="media">
             <div class="media-body ">
                 <h4 class="media-heading">{{item.title}}</h4>
-                <p [name]="item.user_id"></p>
+                <p [loadNames]="item.user_id"></p>
                 <ul class="list-inline list-unstyled">
                     <li><span><i class="glyphicon glyphicon-calendar"></i> {{item.created_at | date:'yyyy-MM-dd HH:mm'}} </span></li>
                     <li>|</li>
