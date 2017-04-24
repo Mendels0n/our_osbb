@@ -9,7 +9,7 @@
             </div>
         </form>
         <ul class="comments-list">
-            <li class="comment" *ngFor="let comment of comments">
+            <li class="comment" *ngFor="let comment of comments | reverse">
                 <a class="pull-left" href="#">
                     <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
                 </a>

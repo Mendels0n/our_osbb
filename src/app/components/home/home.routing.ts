@@ -24,7 +24,7 @@ const homeRoutes: Routes = [{
     path:'create-news',
     component: NewsComponent
   },{
-    path:'edit-news/:item.id',
+    path:'edit-news/:id',
     component: NewsComponent
   }]
 }, ];

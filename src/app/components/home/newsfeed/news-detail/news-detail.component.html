@@ -12,13 +12,13 @@
     </div>
     <div class="post-description">
         <p [innerHTML]="news?.content | sanitizeHtml"></p>
-        <div class="stats">
+        <div class="stats" *ngIf="role == mainRole">
             <a (click)="deleteNews(news?.id)" class="btn btn-default stat-item">
                 Delete
             </a>
-            <!--<a href="#" class="btn btn-default stat-item">
-                <i class="fa fa-share icon"></i>12
-            </a>-->
+            <a [routerLink]="['/edit-news', news?.id]" class="btn btn-default stat-item">
+                Edit
+            </a>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ import { moveInLeft, fallIn } from "../../router.animations";
 })
 export class RegisterComponent implements OnInit{
 	osbb:any;
-	 loading: boolean;
+	loading: boolean;
 	state:string = '';
 
 	constructor(private OsbbService:OsbbService) {}

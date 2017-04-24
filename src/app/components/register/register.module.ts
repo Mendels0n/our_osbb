@@ -9,6 +9,9 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { RegisterRoutingModule } from './register.routing';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { OsbbService } from '../../services/osbb.service';
+import { UserService } from '../../services/user.service';
+
 
 @NgModule({
 	imports: [
@@ -28,6 +31,9 @@ import { PipesModule } from '../../pipes/pipes.module';
 	exports: [
 		RegisterComponent,
 	],
-	providers: [ ]
+	providers: [	
+		OsbbService,
+		UserService
+	]
 })
 export class RegisterModule { }

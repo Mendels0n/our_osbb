@@ -20,14 +20,20 @@ class News{
 export class NewsDetailComponent implements OnInit {
     news: News;
     comments:any;
-    author:any;
-
+    role:string;
+    mainRole:string;
     constructor(private router:Router,private activeRoute: ActivatedRoute, private newsfeedService: NewsfeedService, private userService:UserService) {
         this.news = new News;
+        this.mainRole = "main";
+        this.loadRole();
     }
 
     ngOnInit() {
         this.loadNews();
+    }
+    loadRole(){
+        this.role = localStorage.getItem('role');
+        this.role = this.role.replace(/"/g,'');
     }
     loadNews() {
         let newsId = this.activeRoute.snapshot.params['item.id'];

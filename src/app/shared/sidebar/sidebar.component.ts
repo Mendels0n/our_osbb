@@ -20,6 +20,5 @@ export class SidebarComponent implements OnInit {
     loadRole(){
         this.role = localStorage.getItem('role');
         this.role = this.role.replace(/"/g,'');
-        
     }
 }

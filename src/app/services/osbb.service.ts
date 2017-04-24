@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, URLSearchParams} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { headers } from './headers';
+
 import { OSBB } from '../models/osbb.model'
 
 @Injectable()
@@ -22,13 +24,8 @@ export class OsbbService {
     for(let key in model){
       data.append(key,model[key])
     }
-    return this.http.post(`${this.url}/api/osbbs`, data, this.headers())
+    return this.http.post(`${this.url}/api/osbbs`, data, headers())
     .map((res : Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
-  }
-  private headers () {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return new RequestOptions({ headers });
   }
 }

@@ -11,6 +11,7 @@ export class NewsComponent implements OnInit {
     form:FormGroup;
     private config: any;
     news:any = {};
+    newsId:any;
     error:string;
 
     constructor(private fb: FormBuilder,
@@ -20,6 +21,7 @@ export class NewsComponent implements OnInit {
             title: ['', Validators.compose([Validators.required])],
             content: ['',Validators.compose([Validators.required])]
         });
+        this.newsId = this.route.snapshot.params['id'];
         this.config = {
             toolbarGroups: [
                 { 'name': 'basicstyles', 'groups': ['basicstyles'] },
@@ -32,17 +34,40 @@ export class NewsComponent implements OnInit {
         };
     }
 
-    ngOnInit() { }
-    create(){
-        this.news.user_id = JSON.parse(localStorage.getItem('user_id'));
-        this.newsfeedService.createNews(this.news).subscribe(
-            data => {
-                this.router.navigate(['/'])
-            },
-            error =>{
-                console.log(error);
-                this.error = error;
+    ngOnInit() {
+        if (this.newsId) {
+            this.loadNews();
+        }
+    }
+    loadNews() {
+        this.newsfeedService.getNews(this.newsId).subscribe(
+            news =>{
+                this.news = news;
             }
         )
+    }
+    create() {
+        if (this.newsId) {
+            this.news.user_id = JSON.parse(localStorage.getItem('user_id'));
+            this.newsfeedService.editNews(this.newsId,this.news).subscribe(
+                data => {
+                    this.router.navigate(['/newsfeed', this.newsId])
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+        } else {
+            this.news.user_id = JSON.parse(localStorage.getItem('user_id'));
+            this.newsfeedService.createNews(this.news).subscribe(
+                data => {
+                    this.router.navigate(['/'])
+                },
+                error => {
+                    console.log(error);
+                    this.error = error;
+                }
+            )
+        }
     }
 }

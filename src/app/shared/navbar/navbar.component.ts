@@ -12,9 +12,8 @@ export class NavbarComponent implements OnInit {
     public isCollapsed: boolean = true;
     title: string;
 
-    constructor(private userService: UserService, private router:Router) {
+    constructor(public userService: UserService, private router:Router) {
         this.title = "ОСББ";
-        this.token = !!localStorage.getItem('token');
     }
     ngOnInit() {
         console.log(this.token);

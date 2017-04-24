@@ -20,14 +20,14 @@ export class CreateUserComponent implements OnInit {
     osbbID: number;
     registerUser: FormGroup;
     registerOsbb: FormGroup;
+    model: User;
+    osbb: OSBB;
     osbbForm: boolean;
     userForm: boolean;
-    osbb: OSBB;
-    email:FormControl;
+    required:string = 'Пожалуйста, заполните обязательные поле.';
     error: string;
     state: string = '';
-    model: User;
-
+    
     constructor(private fb: FormBuilder,private location:Location, private activeRoute: ActivatedRoute, private route: Router,
         private osbbService: OsbbService, private userService: UserService) {
         this.osbb = new OSBB;
@@ -51,43 +51,23 @@ export class CreateUserComponent implements OnInit {
 
     ngOnInit() {
         if (this.osbbID) {
-            this.userForm = true;
-            this.osbbForm = false;
+            this.changesForms(true,false);
+            this.loadOsbb();
         } else {
-            this.userForm = false;
-            this.osbbForm = true;
+            this.changesForms(false,true);
         }
-        this.loadOsbb();
     }
     back(){
         this.location.back();
     }
-    emailValidation(control:any):any{
-        return this.check(control);
-    }
-    check(control:any){
-        console.log(control.value);
-        this.userService.checkEmeil(control.value)
-        .debounceTime(1000)
-        .subscribe(
-            data =>{
-              console.log(data);
-            }
-        )
-    }
     loadOsbb() {
-        if (this.osbbID) {
             this.osbbService.getOsbb(this.osbbID)
-            .subscribe(
-                osbb => {
-                    this.osbb = osbb;
-                });
-        }
+            .subscribe(osbb => {this.osbb = osbb;});
     }
 
-    changes() {
-        this.userForm = true;
-        this.osbbForm = false;
+    changesForms(userForm:boolean, osbbForm:boolean) {
+        this.userForm = userForm; //true
+        this.osbbForm = osbbForm; //false
     }
 
     register() {
@@ -104,7 +84,7 @@ export class CreateUserComponent implements OnInit {
                     this.error = error;
                 })
         } else {
-            this.model.role = 2;
+            this.model.role = 1;
             this.model.street = this.osbb.street + ' ' + this.osbb.house_number;
             this.osbbService.createOsbb(this.osbb).subscribe(
                 data => {

@@ -9,7 +9,7 @@ export function checkUniqueEmail(service: UserService, control: any) {
                     (res: boolean) => {
                         if (res == true) {
                             resolve({
-                                emailIdTaken: true
+                                emailTaken: true
                             });
                         } else {
                             resolve(null);
@@ -17,7 +17,7 @@ export function checkUniqueEmail(service: UserService, control: any) {
                     },
                     err => {
                         resolve({
-                            emailIdTaken: true
+                            emailTaken: true
                         });
                     }
                 );
