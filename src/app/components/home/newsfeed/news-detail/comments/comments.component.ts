@@ -5,13 +5,14 @@ import { CommentsService } from '../../../../../services/comments.service';
 
 @Component({
     selector: 'comments',
-    templateUrl: 'comment.component.html',
-    styleUrls: ['comment.component.scss']
+    templateUrl: 'comments.component.html',
+    styleUrls: ['comments.component.scss']
 })
-export class CommentComponent implements OnInit {
+export class CommentsComponent implements OnInit {
     form:FormGroup;
     newsId:any;
     comments:any;
+    commentBody:any;
     model:any = {};
 
     constructor(private fb: FormBuilder,private activeRoute: ActivatedRoute, private commentsService:CommentsService) { 
@@ -22,6 +23,7 @@ export class CommentComponent implements OnInit {
     }
     ngOnInit() { 
         this.loadComments();
+        // setInterval(()=> this.checkChanges(),9000);
     }
     loadComments(){
         this.commentsService.getComments(this.newsId).subscribe(
@@ -35,8 +37,27 @@ export class CommentComponent implements OnInit {
         this.model.newsfeed_id = this.newsId;
         this.commentsService.create(this.model).subscribe(
             data => {
-                this.loadComments();
+                console.log(data);
+                this.comments.push(data);
             }
         )
     }
+    deleteComment(event:Event){
+        let index = this.comments.indexOf(event);
+        this.comments.splice(index,1);
+    }
+    // checkChanges(){
+    //     this.commentsService.getComments(this.newsId).subscribe(
+    //         data =>{
+    //             if(this.arrayEquals(this.comments,data)){
+                  
+    //             }else{
+    //                 console.log('Новые комменты');
+    //             }
+    //         }
+    //     )
+    // }
+    // arrayEquals(x1:any[],x2:any[]){
+    //     return JSON.stringify(x1) == JSON.stringify(x2);
+    // }
 }

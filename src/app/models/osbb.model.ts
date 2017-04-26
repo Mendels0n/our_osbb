@@ -1,5 +1,5 @@
 export class OSBB {
-    country: number;
+    country: string;
     city: string;
     street:string;
     house_number:string;

@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { ComponentModule } from './components/component.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from "./app.component";
@@ -12,6 +13,7 @@ import { AuthGuard } from './guards/auth.guards';
         BrowserModule,
         ComponentModule,
         SharedModule,
+       
         routing
     ],
     declarations: [

@@ -10,18 +10,21 @@ export class LoadNameDirective implements AfterContentInit {
     constructor(private el: ElementRef, private userService: UserService) {
     }
     ngAfterContentInit() {
-            setTimeout(()=>{this.change()},500);
-        
+            this.change();
     }
     private change() {
-        this.userService.userById(this.loadNames).subscribe(
-            data => {
-                this.el.nativeElement.innerHTML = `${data.first_name} ${data.last_name}`;
-            },
-            error =>{
-                this.change();
-            }
-        )
+        if (this.loadNames !== undefined) {
+            this.userService.userById(this.loadNames).subscribe(
+                data => {
+                    this.el.nativeElement.innerHTML = `${data.first_name} ${data.last_name}`;
+                },
+                error => {
+                    this.change();
+                }
+            )
+        }else{
+           setTimeout(()=>{this.change()},500);
+        }
     }
 
 }

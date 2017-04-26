@@ -1,13 +1,19 @@
 <div class="row">
     <table class="table table-hover">
         <tr class="info">
+            <th>№</th>
+            <th>Имя</th>
             <th>Электронная почта жителя</th>
             <th>№ Квартиры</th>
+            <th>Дата подключения</th>
             <th>Действия</th>
         </tr>
-        <tr *ngFor="let item of users">
+        <tr *ngFor="let item of users;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.first_name}} {{item.last_name}}</td>
             <td>{{item.email}}</td>
             <td>{{item.room}}</td>
+            <td>{{item.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
                 <div class="btn-group" dropdown>
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">

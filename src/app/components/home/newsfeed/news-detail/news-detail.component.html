@@ -12,7 +12,7 @@
     </div>
     <div class="post-description">
         <p [innerHTML]="news?.content | sanitizeHtml"></p>
-        <div class="stats" *ngIf="role == mainRole">
+        <div class="stats" *ngIf="role == mainRole" >
             <a (click)="deleteNews(news?.id)" class="btn btn-default stat-item">
                 Delete
             </a>

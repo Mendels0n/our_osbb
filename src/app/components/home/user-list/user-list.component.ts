@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { UnregisteretService } from '../../../services/unregisteret.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'users-list',
@@ -9,6 +10,7 @@ import { UnregisteretService } from '../../../services/unregisteret.service';
 export class UserListComponent implements OnInit {
     users:any;
     reason:string;
+    @ViewChild('staticModal') public staticModal:ModalDirective;
     constructor(private service: UnregisteretService) {}
 
     ngOnInit() {
@@ -17,20 +19,22 @@ export class UserListComponent implements OnInit {
     loadUser(){
         this.service.getAll().subscribe(
             data => {
+                console.log(data);
                 this.users = data;
             })
     }
     aprove(id:any){
         this.service.aprove(id).subscribe(
             data =>{
-                console.log(data);
+               this.loadUser();                
             }
         )
     }
     declined(id:any){
         this.service.declined(id,this.reason).subscribe(
             data => {
-                console.log(data);
+               this.staticModal.hide();
+               this.loadUser();
             }
         )
     }

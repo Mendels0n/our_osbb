@@ -14,7 +14,8 @@ import { NewsComponent } from './newsfeed/news/news.component';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeRoutingModule } from './home.routing';
 import { UserListComponent } from './user-list/user-list.component';
-import { CommentComponent } from './newsfeed/news-detail/comment/comment.component';
+import { CommentsComponent } from './newsfeed/news-detail/comments/comments.component';
+import { CommentComponent } from './newsfeed/news-detail/comments/comment/comment.component';
 import { DirectivesModule } from '../../directives/directives.module';
 import { UnregisteretService } from '../../services/unregisteret.service';
 import { NewsfeedService } from '../../services/newsfeed.service';
@@ -42,6 +43,7 @@ import { PipesModule } from '../../pipes/pipes.module'
 		NewsComponent,
 		NewsDetailComponent,
 		CommentComponent,
+		CommentsComponent,
 		UserListComponent
 	],
 	exports: [ 

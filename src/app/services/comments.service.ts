@@ -24,4 +24,18 @@ export class CommentsService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
+    edit(id:any,model:any){
+        let data = new URLSearchParams();
+        for (let key in model) {
+            data.append(key, model[key])
+        }
+        return this.http.patch(`${this.url}/api/comment/${id}`, data, headers())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().errors || 'Server error'));
+    }
+    delete(id:any){
+        return this.http.delete(`${this.url}/api/comment/${id}`, headers())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().errors || 'Server error'));
+    }
 }

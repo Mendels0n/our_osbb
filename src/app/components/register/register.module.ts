@@ -11,6 +11,7 @@ import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { OsbbService } from '../../services/osbb.service';
 import { UserService } from '../../services/user.service';
+import { AgmCoreModule } from "angular2-google-maps/core";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UserService } from '../../services/user.service';
 		ReactiveFormsModule,
 		HttpModule,
 		DirectivesModule,
+		 AgmCoreModule.forRoot({ apiKey: "AIzaSyDGNmaoVp7ASdGP6c5X4iHK3swJli3Vpi0", libraries: ["places"]}),
 		PipesModule,
 		AlertModule.forRoot(),
 		RegisterRoutingModule
