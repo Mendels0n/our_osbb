@@ -20,7 +20,11 @@ import { DirectivesModule } from '../../directives/directives.module';
 import { UnregisteretService } from '../../services/unregisteret.service';
 import { NewsfeedService } from '../../services/newsfeed.service';
 import { CommentsService } from '../../services/comments.service';
-import { PipesModule } from '../../pipes/pipes.module'
+import { PipesModule } from '../../pipes/pipes.module';
+import { VotesComponent } from './votes/votes.component';
+import { VotesService } from '../../services/votes.service';
+import { VoteComponent } from './votes/vote/vote.component';
+import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 
 @NgModule({
 	imports: [ 
@@ -44,11 +48,14 @@ import { PipesModule } from '../../pipes/pipes.module'
 		NewsDetailComponent,
 		CommentComponent,
 		CommentsComponent,
+		VotesComponent,
+		VoteDetailComponent,
+		VoteComponent,
 		UserListComponent
 	],
 	exports: [ 
 		HomeComponent
 	],
-	providers: [ UnregisteretService, NewsfeedService, CommentsService ]
+	providers: [ UnregisteretService, NewsfeedService, CommentsService, VotesService ]
 })
 export class HomeModule { }

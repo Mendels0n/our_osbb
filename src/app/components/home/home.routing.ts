@@ -7,6 +7,10 @@ import { NewsComponent } from './newsfeed/news/news.component';
 import { HomeComponent } from './home.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthGuard } from '../../guards/auth.guards';
+import { VotesComponent } from './votes/votes.component';
+import { VoteComponent } from './votes/vote/vote.component';
+import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
+
 const homeRoutes: Routes = [{
   path: '',
   component: HomeComponent,
@@ -15,7 +19,7 @@ const homeRoutes: Routes = [{
     path: '',
     component: NewsfeedComponent
   },{
-    path:'newsfeed/:item.id',
+    path:'newsfeed/:id',
     component: NewsDetailComponent
   },{
     path:'users',
@@ -26,6 +30,18 @@ const homeRoutes: Routes = [{
   },{
     path:'edit-news/:id',
     component: NewsComponent
+  },{
+    path:'votes',
+    component: VotesComponent
+  },{
+    path:'create-vote',
+    component: VoteComponent
+  },{
+    path:'edit-news/:id',
+    component: VoteComponent
+  },{
+    path:'votes/:id',
+    component: VoteDetailComponent
   }]
 }, ];
 

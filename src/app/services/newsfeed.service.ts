@@ -7,7 +7,7 @@ import { headers } from './headers';
 export class NewsfeedService {
     url: string;
     constructor(private http: Http, ) {
-        this.url = 'https://our-osbb.herokuapp.com';
+        this.url = 'https://our-osbb-test.herokuapp.com';
     }
     allNews() {
         return this.http.get(`${this.url}/api/newsfeed`, headers())

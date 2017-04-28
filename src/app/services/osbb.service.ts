@@ -9,7 +9,7 @@ import { OSBB } from '../models/osbb.model'
 export class OsbbService {
   url : string;
   constructor(private http:Http) {
-    this.url = 'https://our-osbb.herokuapp.com';
+    this.url = 'https://our-osbb-test.herokuapp.com';
   }
   getAll() {
     return this.http.get(`${this.url}/api/osbbs`)

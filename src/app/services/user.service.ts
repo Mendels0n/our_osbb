@@ -10,14 +10,14 @@ import { User } from '../models/user.model';
 export class UserService {
   url:string;
   constructor (private http: Http) {
-    this.url = 'https://our-osbb.herokuapp.com';  
+    this.url = 'https://our-osbb-test.herokuapp.com';  
   }
   checkToken(): boolean {
     return  !!localStorage.getItem('token');
   }
   signIn(login: string, password: string) {
     let data = new URLSearchParams();
-    data.append('login', login);
+    data.append('email', login);
     data.append('password', password);
     return this.http.post(`${this.url}/api/logins`, data, headers())
       .map((response: Response) => {

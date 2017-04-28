@@ -19,7 +19,7 @@ export class CommentsComponent implements OnInit {
         this.form = this.fb.group({
             comment: ['', Validators.compose([Validators.required])]
         });
-        this.newsId = this.activeRoute.snapshot.params['item.id'];
+        this.newsId = this.activeRoute.snapshot.params['id'];
     }
     ngOnInit() { 
         this.loadComments();

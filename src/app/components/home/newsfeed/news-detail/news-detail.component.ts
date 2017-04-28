@@ -36,7 +36,7 @@ export class NewsDetailComponent implements OnInit {
         this.role = this.role.replace(/"/g,'');
     }
     loadNews() {
-        let newsId = this.activeRoute.snapshot.params['item.id'];
+        let newsId = this.activeRoute.snapshot.params['id'];
         this.newsfeedService.getNews(newsId).subscribe(
             news => {
                 this.news = news;

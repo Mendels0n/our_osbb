@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let vote of votes">
+        <a [routerLink]="[ '/votes', vote.id ]">{{vote.title}}</a>
+    </li>
+</ul>

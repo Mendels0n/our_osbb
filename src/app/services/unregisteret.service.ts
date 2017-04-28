@@ -8,7 +8,7 @@ import { headers } from './headers';
 export class UnregisteretService {
     url: string;
     constructor(private http: Http) {
-        this.url = 'https://our-osbb.herokuapp.com';
+        this.url = 'https://our-osbb-test.herokuapp.com';
     }
 
     getAll() {
