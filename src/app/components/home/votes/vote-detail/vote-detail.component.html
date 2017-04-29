@@ -1,8 +1,9 @@
 <h4>{{vote?.title}}</h4>
-<p>Start date <span>{{vote?.start_date}}</span></p>
-<p>End date <span>{{vote?.end_date}}</span></p>
+<p>Start date <span>{{vote?.start_date | amCalendar}}</span></p>
+<p>End date <span>{{vote?.end_date | amCalendar}}</span></p>
 <p>
-    <button (click)="agree()">За</button>
-    <button (click)="notAgree()">Против</button>
     
-</p>
+    <button type="button" class="btn" [class.btn-primary]="button?.agree" (click)="actions('agree')">За</button>
+    <button type="button" class="btn" [class.btn-primary]="button?.notAgree" (click)="actions('notAgree')">Против</button>
+    
+</p>    

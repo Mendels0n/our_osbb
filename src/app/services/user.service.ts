@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { headers } from './headers';
+import { API_URL } from './config';
 
 import { User } from '../models/user.model';
-
 
 @Injectable()
 export class UserService {
   url:string;
   constructor (private http: Http) {
-    this.url = 'https://our-osbb-test.herokuapp.com';  
+    this.url = API_URL;  
   }
   checkToken(): boolean {
     return  !!localStorage.getItem('token');

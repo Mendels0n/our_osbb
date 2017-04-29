@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router'
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CKEditorModule } from 'ng2-ckeditor';
+import {MomentModule} from 'angular2-moment';
+import { DateTimePickerModule } from 'ng-pick-datetime';
 
 import { HomeComponent } from './home.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
@@ -37,6 +39,8 @@ import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 		SharedModule,
 		PipesModule,
 		CKEditorModule,
+		DateTimePickerModule,
+		MomentModule,
 		BsDropdownModule.forRoot(),
 		ModalModule.forRoot(),
 		HttpModule

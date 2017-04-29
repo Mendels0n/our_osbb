@@ -11,6 +11,8 @@
         <div class="form-group">
             <label>Дата старта</label>
             <input type="datetime-local" [(ngModel)]="vote.start_date" formControlName="startDate" class="form-control"/>
+            <!--<app-date-range [(dateRange)]="dateRange"></app-date-range>-->
+            <input class="picker-input" [ngModel]="moment" [returnObject]=" 'string' " [locale]=" 'ru' " [viewFormat]= "'YYYY-MM-DD HH:mm'" [(dateTimePicker)]="moment" readonly>
         </div>
         <div class="form-group">
             <label>Дата </label>

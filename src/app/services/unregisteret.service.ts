@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { headers } from './headers';
-
+import { API_URL } from './config';
 
 @Injectable()
 export class UnregisteretService {
     url: string;
     constructor(private http: Http) {
-        this.url = 'https://our-osbb-test.herokuapp.com';
+        this.url = API_URL;
     }
 
     getAll() {

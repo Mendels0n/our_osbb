@@ -27,6 +27,7 @@ export class VoteComponent implements OnInit {
 
     ngOnInit() {
         this.loadVotes();
+        this.vote.start_date = new Date();
     }
     loadVotes() {
         if (this.voteId) {

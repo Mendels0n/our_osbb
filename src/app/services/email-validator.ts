@@ -6,8 +6,9 @@ export function checkUniqueEmail(service: UserService, control: any) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 service.checkEmeil(control.value).subscribe(
-                    (res: boolean) => {
-                        if (res == true) {
+                    (res: any) => {
+                        console.log(res);
+                        if (res.exist == true) {
                             resolve({
                                 emailTaken: true
                             });

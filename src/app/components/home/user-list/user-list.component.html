@@ -13,7 +13,7 @@
             <td>{{item.first_name}} {{item.last_name}}</td>
             <td>{{item.email}}</td>
             <td>{{item.room}}</td>
-            <td>{{item.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
+            <td>{{item.created_at | amCalendar }}</td>
             <td>
                 <div class="btn-group" dropdown>
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">

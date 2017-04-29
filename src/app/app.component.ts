@@ -1,4 +1,7 @@
 import {Component, OnInit} from "@angular/core";
+import * as moment from 'moment';
+
+
 
 @Component({
     selector: "app",
@@ -12,3 +15,4 @@ export class AppComponent implements OnInit {
     }
     
 }
+moment.locale('ru');

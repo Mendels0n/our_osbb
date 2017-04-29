@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MomentModule} from 'angular2-moment';
 
 
 import { ComponentModule } from './components/component.module';
@@ -8,12 +9,13 @@ import { AppComponent } from "./app.component";
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './guards/auth.guards';
 
+
 @NgModule({
     imports: [
         BrowserModule,
         ComponentModule,
         SharedModule,
-       
+        MomentModule,
         routing
     ],
     declarations: [
@@ -26,3 +28,4 @@ import { AuthGuard } from './guards/auth.guards';
     bootstrap: [AppComponent]
 })
 export class AppModule {}
+
