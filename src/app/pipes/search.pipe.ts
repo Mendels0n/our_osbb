@@ -11,4 +11,5 @@ export class SearchPipe implements PipeTransform {
             (item.country.toLowerCase().includes(term.toLowerCase()) ||
                 item.city.toLowerCase().includes(term.toLowerCase()) || item.street.toLowerCase().includes(term.toLowerCase())))
     }
+    
 }

@@ -1,7 +1,7 @@
 export class Votes {
     title:string;
-    start_date:Date;
-    end_date:Date;
+    start_date:string;
+    end_date:string;
     user_id:string;
     [propName: string]: any;
 }

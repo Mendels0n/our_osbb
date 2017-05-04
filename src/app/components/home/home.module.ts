@@ -7,7 +7,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CKEditorModule } from 'ng2-ckeditor';
 import {MomentModule} from 'angular2-moment';
-import { DateTimePickerModule } from 'ng-pick-datetime';
+import { NguiDatetimePickerModule, NguiDatetime } from '@ngui/datetime-picker';
+
 
 import { HomeComponent } from './home.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
@@ -27,6 +28,19 @@ import { VotesComponent } from './votes/votes.component';
 import { VotesService } from '../../services/votes.service';
 import { VoteComponent } from './votes/vote/vote.component';
 import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
+NguiDatetime.locale = {
+
+    date: 'date',
+    time: 'время',
+
+    year: 'year',
+    month: 'month',
+    day: 'day',
+    hour: 'Часов',
+    minute: 'минут',
+    currentTime: "текущие время"
+
+};
 
 @NgModule({
 	imports: [ 
@@ -36,10 +50,10 @@ import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 		RouterModule,
 		HomeRoutingModule,
 		DirectivesModule,
+		NguiDatetimePickerModule,
 		SharedModule,
 		PipesModule,
 		CKEditorModule,
-		DateTimePickerModule,
 		MomentModule,
 		BsDropdownModule.forRoot(),
 		ModalModule.forRoot(),

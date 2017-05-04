@@ -17,21 +17,24 @@ interface Button {
 export class VoteDetailComponent implements OnInit {
     voteId: string;
     vote: Votes;
-    messageAgree: string;
     userId: string;
     button:Button;
     loading:boolean;
+    votesEnd:boolean;
+    role:string;
+    mainRole:string;
+    count:any = {};
 
     constructor(private route: ActivatedRoute, private router: Router, private votesService: VotesService, private userService: UserService) {
         this.voteId = this.route.snapshot.params['id'];
         this.userId = localStorage.getItem('user_id');
         this.button = {agree:false, notAgree:false};
-        this.loading = false;
+        this.loading = false;  
+        this.mainRole = "main";
     }
     ngOnInit() {
         this.loadVotes();
         this.checkAllVotes();
-        this.dateComparisons();
     }
 
     //All
@@ -39,18 +42,33 @@ export class VoteDetailComponent implements OnInit {
         this.votesService.getVotes(this.voteId).subscribe(
             data => {
                 this.vote = data;
+                let nowDate = new Date();
+                let endDate = new Date(this.vote.end_date);
+                if(nowDate >= endDate){
+                    this.votesEnd = false; 
+                     this.getAllAgree();
+                     this.getAllNotAgree();
+                     this.loadUsers();
+                }else{
+                    this.votesEnd = true;                
+                }
             }
         )
     }
-    
-    dateComparisons(){
-        let nowDate = new Date();
-        console.log(this.vote.end_date);
-        console.log(nowDate);
-         
-    }    
+    loadUsers(){
+        this.userService.getAllUsers().subscribe(
+            data => {
+                this.count.users = data.length;
+            }
+        )
+    }
+
+    loadRole(){
+        this.role = localStorage.getItem('role');
+        this.role = this.role.replace(/"/g,'');
+    }
+
     checkAllVotes() {
-	console.time('Check all votes');
         this.votesService.checkAgree(this.voteId, this.userId).subscribe(
             data => {
                 if (data == null) {
@@ -70,11 +88,10 @@ export class VoteDetailComponent implements OnInit {
                 }
             }
         )
-    console.timeEnd('Check all votes');
     }
     
+    
     actions(button: string) {
-        console.time('actions');
         this.checkAllVotes();
         if (!this.loading) {
             if (!this.button.agree && !this.button.notAgree) {
@@ -85,28 +102,34 @@ export class VoteDetailComponent implements OnInit {
                 }
             } else if (this.button.agree && !this.button.notAgree) {
                 if (button == 'agree') {
-                    this.deleteAgree();
+                    this.deleteAgree(false);
                 } else if (button == 'notAgree') {
-                    this.deleteAgree();
-                    this.notAgree();
+                    this.deleteAgree(true);
                 }
             } else if (!this.button.agree && this.button.notAgree) {
                 if (button == 'agree') {
-                    this.deleteNotAgree();
-                    this.agree();
+                   this.deleteNotAgree(true)
                 } else if (button == 'notAgree') {
-                    this.deleteNotAgree();
+                    this.deleteNotAgree(false);
                 }
             } else {
-                this.deleteAgree();
-                this.deleteNotAgree();
+                this.deleteAgree(false);
+                this.deleteNotAgree(false);
             }
-        }else{
+        } else {
             console.log('Woow palelhce');
         }
-        console.timeEnd('actions');
     }
-
+    deleteVote(){
+        this.votesService.delete(this.voteId).subscribe(
+            data => {
+                this.router.navigate(['/votes'])
+            },
+            error => {
+                console.log(error);
+            }
+        )
+    }
     //Agree
     agree() {
         this.loading = true;
@@ -127,7 +150,7 @@ export class VoteDetailComponent implements OnInit {
         )
     }
 
-    deleteAgree() {
+    deleteAgree(voting:boolean):any{
         this.loading = true;  
         this.votesService.checkAgree(this.voteId, this.userId).subscribe(
             data => {
@@ -135,11 +158,12 @@ export class VoteDetailComponent implements OnInit {
                     this.votesService.deleteAgree(data.id, this.voteId).subscribe(
                         data => {
                             this.loading = false; 
-                            this.button.agree = false;                            
+                            this.button.agree = false;    
+                            voting ? this.notAgree() : false;
                         },
                         error => {
                             this.button.agree = true;
-                            this.loading = false;  
+                            this.loading = false;    
                         }
                     )
                 }
@@ -149,11 +173,7 @@ export class VoteDetailComponent implements OnInit {
     getAllAgree() {
         this.votesService.getAllAgree(this.voteId).subscribe(
             data => {
-                console.log('get all agree votes');                
-                console.log(data);
-            },
-            error => {
-                console.log(error);
+                this.count.agree = data.length;
             }
         )
     }
@@ -175,20 +195,20 @@ export class VoteDetailComponent implements OnInit {
             }
         )
     }
-    deleteNotAgree() {
-        this.loading = true;  
+    deleteNotAgree(voting:boolean):any{
+        this.loading = true;
         this.votesService.checkNotAgree(this.voteId, this.userId).subscribe(
             data => {
                 if (data !== null) {
                     this.votesService.deleteNotAgree(data.id, this.voteId).subscribe(
                         data => {
-                            this.button.notAgree = false; 
-                            this.loading = false;            
+                            this.button.notAgree = false;
+                            this.loading = false;
+                            voting ? this.agree() : false;
                         },
                         error => {
-                        this.button.notAgree = true;  
-                        this.loading = false;                           
-                            console.log(error)
+                            this.button.notAgree = true;
+                            this.loading = false;
                         }
                     )
                 }
@@ -198,13 +218,7 @@ export class VoteDetailComponent implements OnInit {
     getAllNotAgree() {
         this.votesService.getAllNotAgree(this.voteId).subscribe(
             data => {
-                 console.log('get all not agree votes');   
-                console.log(data);
-            },
-            error => {
-                if (error == 'Vote is not exist in this osbb') {
-                    this.messageAgree = "";
-                }
+                this.count.notAgree = data.length;
             }
         )
     }

@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
     <form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="login()" [formGroup]="loginForm" novalidate [@moveInLeft]="state">
         <h3 class="text-center">Войти</h3>
@@ -22,4 +23,5 @@
             <button type="submit" class="btn btn-default" [disabled]="loginForm.invalid">Войти</button>
         </div>
     </form>
+</div>
 </div>

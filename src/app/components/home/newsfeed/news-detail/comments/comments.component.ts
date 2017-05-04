@@ -39,6 +39,7 @@ export class CommentsComponent implements OnInit {
             data => {
                 console.log(data);
                 this.comments.push(data);
+                this.form.reset();
             }
         )
     }

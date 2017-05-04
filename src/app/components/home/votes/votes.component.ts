@@ -9,18 +9,30 @@ import { Votes } from '../../../models/votes.model';
 })
 export class VotesComponent implements OnInit {
     votes:Votes;
+    term:string;
     constructor(private votesService:VotesService) { }
 
     ngOnInit() { 
         this.loadVotes();
+        this.term = 'all';
     }
 
     loadVotes(){
         this.votesService.getAllVotes().subscribe(
             data =>{
                 this.votes = data;
-                console.log(data);
             }
         )
     }
+    checkDate(date: string) {
+        let nowDate = new Date();
+        let endDate = new Date(date);
+        if (nowDate >= endDate) {
+            return false;
+        } else {
+            return true;
+
+        }
+    }
+    
 }

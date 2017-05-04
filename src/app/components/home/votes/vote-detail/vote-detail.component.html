@@ -1,9 +1,42 @@
-<h4>{{vote?.title}}</h4>
-<p>Start date <span>{{vote?.start_date | amCalendar}}</span></p>
-<p>End date <span>{{vote?.end_date | amCalendar}}</span></p>
-<p>
-    
-    <button type="button" class="btn" [class.btn-primary]="button?.agree" (click)="actions('agree')">За</button>
-    <button type="button" class="btn" [class.btn-primary]="button?.notAgree" (click)="actions('notAgree')">Против</button>
-    
-</p>    
+<div class="container">
+    <div class="row">
+        <div class="panel-default">
+            <div class="panel-heading">
+                <h4 class="text-center">{{vote?.title}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-9" *ngIf="votesEnd">
+                        <div>
+                            <p>Начало голосования : <span>{{vote?.start_date | amDateFormat: 'YYYY-MM-DD HH:mm'}}</span></p>
+                            <p>Конец голосования : <span>{{vote?.end_date | amDateFormat: 'YYYY-MM-DD HH:mm'}}</span></p>
+                        </div>
+                    </div>
+                    <div *ngIf="!votesEnd" class="col-md-6 col-md-offset-3">
+                           <p class="text-center">За проголоcовало  <span class="badge">{{count.agree}}</span></p>
+                           <p class="text-center">Против проголоcовало <span class="badge">{{count.notAgree}}</span></p>
+                           <p class="text-center"> Всего жителей <span class="badge">{{count.users}}</span></p> 
+                        </div>
+                    <div class="col-md-3">
+                        <a class="pull-right" *ngIf="vote?.user_id == userId || role == mainRole" [routerLink]="[ '/edit-votes', vote?.id ]">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 48 48">
+                                <path d="M40.5 0c4.142 0 7.5 3.358 7.5 7.5 0 1.688-0.558 3.246-1.5 4.5l-3 3-10.5-10.5 3-3c1.254-0.942 2.811-1.5 4.5-1.5zM3 34.5l-3 13.5 13.5-3 27.75-27.75-10.5-10.5-27.75 27.75zM33.543 17.043l-21 21-2.585-2.585 21-21 2.585 2.585z"></path>
+                            </svg>
+                        </a>
+                        <a class="pull-right" (click)="deleteVote()" title="Удалить" *ngIf="vote?.user_id == userId || role == mainRole">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 48 48">
+                                <path d="M9 48h30l3-33h-36zM30 6v-6h-12v6h-15v9l3-3h36l3 3v-9h-15zM27 6h-6v-3h6v3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3" *ngIf="votesEnd">
+                    <p class="text-center" >
+                        <button type="button" class="btn" [class.btn-primary]="button?.agree" (click)="actions('agree')">За</button>
+                        <button type="button" class="btn" [class.btn-primary]="button?.notAgree" (click)="actions('notAgree')">Против</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

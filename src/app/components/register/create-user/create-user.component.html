@@ -1,94 +1,96 @@
-<div class="row" *ngIf="osbbForm">
-	<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="changesForms(true,false)" [formGroup]="registerOsbb" novalidate
-	    [@fallIn]="state">
-		<h3 class="text-center">Регистрация ОСББ</h3>
-		<div class="row">
-			<div class="form-group col-md-8">
-				<label>Улица</label>
-				<input type="text" name="street" [(ngModel)]="osbb.street" #search class="form-control" formControlName="street" placeholder="Улица"
+<div class="container">
+	<div class="row" *ngIf="osbbForm">
+		<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="changesForms(true,false)" [formGroup]="registerOsbb" novalidate
+		    [@fallIn]="state">
+			<h3 class="text-center">Регистрация ОСББ</h3>
+			<div class="row">
+				<div class="form-group col-md-8">
+					<label>Улица</label>
+					<input type="text" name="street" [(ngModel)]="osbb.street" #search class="form-control" formControlName="street" placeholder="Улица"
+					/>
+				</div>
+				<div class="form-group col-md-4">
+					<label>№ дома</label>
+					<input type="text" name="houseNumber" [(ngModel)]="osbb.house_number" class="form-control" formControlName="houseNumber"
+					    placeholder="Адрес ОСББ" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Город</label>
+				<input type="text" name="city" [(ngModel)]="osbb.city" class="form-control" formControlName="city" placeholder="Город" />
+				<span *ngIf="registerOsbb.controls['city'].invalid && registerOsbb.controls['city'].touched" class="help-block">
+				{{required}}
+			</span>
+			</div>
+			<div class="form-group">
+				<label>Страна</label>
+				<input type="text" name="country" [(ngModel)]="osbb.country" class="form-control" formControlName="country" placeholder="Cтрана"
 				/>
-			</div>
-			<div class="form-group col-md-4">
-				<label>№ дома</label>
-				<input type="text" name="houseNumber" [(ngModel)]="osbb.house_number" class="form-control" formControlName="houseNumber"
-				    placeholder="Адрес ОСББ" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label>Город</label>
-			<input type="text" name="city" [(ngModel)]="osbb.city" class="form-control" formControlName="city" placeholder="Город" />
-			<span *ngIf="registerOsbb.controls['city'].invalid && registerOsbb.controls['city'].touched" class="help-block">
+				<span *ngIf="registerOsbb.controls['country'].invalid && registerOsbb.controls['country'].touched" class="help-block">
 				{{required}}
 			</span>
-		</div>
-		<div class="form-group">
-			<label>Страна</label>
-			<input type="text" name="country" [(ngModel)]="osbb.country" class="form-control" formControlName="country" placeholder="Cтрана"/>
-			<span *ngIf="registerOsbb.controls['country'].invalid && registerOsbb.controls['country'].touched" class="help-block">
+			</div>
+			<div class="form-group">
+				<label>№ ОСББ</label>
+				<input type="text" name="osbbNumber" [(ngModel)]="osbb.osbb_number" class="form-control" formControlName="osbbNumber" />
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default" [disabled]="registerOsbb.invalid">Далее</button>
+				<button type="button" class="btn btn-default" (click)="back()">Назад</button>
+			</div>
+		</form>
+	</div>
+	<!-- Create user and chief-->
+	<div class="row" *ngIf="userForm">
+		<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="register()" [formGroup]="registerUser" novalidate [@moveInLeft]="state">
+			<h3 class="text-center" *ngIf="osbbID">Регистрация жителя ОСББ</h3>
+			<h3 class="text-center" *ngIf="!osbbID">Регистрация главы ОСББ</h3>
+			<alert type="danger" *ngIf="error">
+				<strong>Oh snap!</strong> {{error}}
+			</alert>
+			<div class="form-group">
+				<label>Имя</label>
+				<input type="text" [(ngModel)]="model.first_name" name="firstName" class="form-control" formControlName="firstName" placeholder="Имя">
+				<div *ngIf="registerUser.controls['firstName'].invalid && registerUser.controls['firstName'].touched" class="alert alert-danger">
+					{{required}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Фамилия</label>
+				<input type="text" [(ngModel)]="model.last_name" name="lastName" class="form-control" formControlName="lastName" placeholder="Фамилия">
+				<span *ngIf="registerUser.controls['lastName'].invalid && registerUser.controls['lastName'].touched" class="help-block">
 				{{required}}
 			</span>
-		</div>
-		<div class="form-group">
-			<label>№ ОСББ</label>
-			<input type="text" name="osbbNumber" [(ngModel)]="osbb.osbb_number" class="form-control" formControlName="osbbNumber" />
-		</div>
-		<div class="form-group">
-			<button type="submit" class="btn btn-default" [disabled]="registerOsbb.invalid">Далее</button>
-			<button type="button" class="btn btn-default" (click)="back()">Назад</button>
-		</div>
-	</form>
-</div>
-<!-- Create user and chief-->
-<div class="row" *ngIf="userForm">
-	<form class="col-md-6 col-md-offset-3" name="form" (ngSubmit)="register()" [formGroup]="registerUser" novalidate [@moveInLeft]="state">
-		<h3 class="text-center" *ngIf="osbbID">Регистрация жителя ОСББ</h3>
-		<h3 class="text-center" *ngIf="!osbbID">Регистрация главы ОСББ</h3>
-		<alert type="danger" *ngIf="error">
-			<strong>Oh snap!</strong> {{error}}
-		</alert>
-		<div class="form-group">
-			<label>Имя</label>
-			<input type="text" [(ngModel)]="model.first_name" name="firstName" class="form-control" formControlName="firstName" placeholder="Имя">
-			<div *ngIf="registerUser.controls['firstName'].invalid && registerUser.controls['firstName'].touched" class="alert alert-danger">
-				{{required}}
 			</div>
-		</div>
-		<div class="form-group">
-			<label>Фамилия</label>
-			<input type="text" [(ngModel)]="model.last_name" name="lastName" class="form-control" formControlName="lastName" placeholder="Фамилия">
-			<span *ngIf="registerUser.controls['lastName'].invalid && registerUser.controls['lastName'].touched" class="help-block">
+			<div class="row" *ngIf="osbbID">
+				<div class="form-group col-md-8">
+					<label>ОСББ</label>
+					<input type="text" name="osbb" class="form-control" value="{{osbb?.street}} {{osbb?.house_number}}" readonly>
+				</div>
+				<div class="form-group col-md-4">
+					<label>№ Квартиры</label>
+					<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
+				</div>
+			</div>
+			<div class="row" *ngIf="!osbbID">
+				<div class="form-group col-md-8">
+					<label>ОСББ</label>
+					<input type="text" name="osbb" class="form-control" value="{{osbb.street}} {{osbb.house_number}}" readonly>
+				</div>
+				<div class="form-group col-md-4">
+					<label>№ Квартиры</label>
+					<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
+				</div>
+			</div>
+			<div class="form-group" *ngIf="registerUser.controls['apartment'].invalid && registerUser.controls['apartment'].touched">
+				<span class="help-block">
 				{{required}}
 			</span>
-		</div>
-		<div class="row" *ngIf="osbbID">
-			<div class="form-group col-md-8">
-				<label>ОСББ</label>
-				<input type="text" name="osbb" class="form-control" value="{{osbb?.street}} {{osbb?.house_number}}" readonly>
 			</div>
-			<div class="form-group col-md-4">
-				<label>№ Квартиры</label>
-				<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
-			</div>
-		</div>
-		<div class="row" *ngIf="!osbbID">
-			<div class="form-group col-md-8">
-				<label>ОСББ</label>
-				<input type="text" name="osbb" class="form-control" value="{{osbb.street}} {{osbb.house_number}}" readonly>
-			</div>
-			<div class="form-group col-md-4">
-				<label>№ Квартиры</label>
-				<input type="text" name="apartment" [(ngModel)]="model.room" class="form-control" formControlName="apartment">
-			</div>
-		</div>
-		<div class="form-group" *ngIf="registerUser.controls['apartment'].invalid && registerUser.controls['apartment'].touched">
-			<span class="help-block">
-				{{required}}
-			</span>
-		</div>
-		<div class="form-group">
-			<label>Электронная почта</label>
-			<input type="text" name="email" [(ngModel)]="model.email" class="form-control" formControlName="email" placeholder="" />
-			<span *ngIf="registerUser.controls['email'].invalid && registerUser.controls['email'].touched" class="help-block">
+			<div class="form-group">
+				<label>Электронная почта</label>
+				<input type="text" name="email" [(ngModel)]="model.email" class="form-control" formControlName="email" placeholder="" />
+				<span *ngIf="registerUser.controls['email'].invalid && registerUser.controls['email'].touched" class="help-block">
 				{{required}}
 				<p *ngIf="registerUser.get('email').hasError('pattern')">
 					E-mail введен неверно.
@@ -97,20 +99,21 @@
 					E-mail заннят.
 				</p>
 			</span>
-		</div>
-		<div class="form-group">
-			<label>Пароль</label>
-			<div class="input-group">
-				<input type="password" name="password" [(ngModel)]="model.password" class="form-control" formControlName="password" placeholder="Пароль"
-				    #pass/>
-				<div [readPassword]="pass" class="input-group-addon"><img src="../../../../assets/svg/eye.svg" alt="Посмотреть пароль" title="Посмотреть пароль"></div>
 			</div>
-			<span *ngIf="registerUser.controls['password'].invalid && registerUser.controls['password'].touched" class="help-block">
+			<div class="form-group">
+				<label>Пароль</label>
+				<div class="input-group">
+					<input type="password" name="password" [(ngModel)]="model.password" class="form-control" formControlName="password" placeholder="Пароль"
+					    #pass/>
+					<div [readPassword]="pass" class="input-group-addon"><img src="../../../../assets/svg/eye.svg" alt="Посмотреть пароль" title="Посмотреть пароль"></div>
+				</div>
+				<span *ngIf="registerUser.controls['password'].invalid && registerUser.controls['password'].touched" class="help-block">
 				{{required}}
 			</span>
-		</div>
-		<div class="form-group">
-			<button type="submit" class="btn btn-default" [disabled]="registerUser.invalid">Подключиться</button>
-		</div>
-	</form>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default" [disabled]="registerUser.invalid">Подключиться</button>
+			</div>
+		</form>
+	</div>
 </div>

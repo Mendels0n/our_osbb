@@ -49,6 +49,11 @@ export class UserService {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
+  getAllUsers(){
+    return this.http.get(`${this.url}/api/users/`, headers())
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
+  }
   checkEmeil(emeil:string){
     let data = new URLSearchParams();
     data.append('email',emeil);

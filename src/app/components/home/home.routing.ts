@@ -37,7 +37,7 @@ const homeRoutes: Routes = [{
     path:'create-vote',
     component: VoteComponent
   },{
-    path:'edit-news/:id',
+    path:'edit-votes/:id',
     component: VoteComponent
   },{
     path:'votes/:id',

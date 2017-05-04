@@ -1,0 +1,49 @@
+.row-flex, .row-flex > div[class*='col-'] {  
+    display: flex;
+    flex:0 1 auto;
+}
+.container{
+    width: 900px;
+    margin-top:5px;
+}
+
+.row-flex-wrap {
+	flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
+}
+h4{
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+}
+p{
+    font-family: 'Roboto Slab', serif;
+    font-size: 12px;
+}
+.thumbnail{
+    width: 190px;
+}
+.selected {
+    margin: 0 0 5px 0;
+}
+.row-flex > div[class*='col-'] {
+	 margin:-.2px; /* hack adjust for wrapping */
+}
+* {
+  box-sizing: border-box;
+}
+
+.caption {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+}
+.button {
+  bottom: 0;
+  margin: auto;
+
+}

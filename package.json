@@ -1,5 +1,5 @@
 {
-  "name": "OurOsbb",
+  "name": "Our-Osbb",
   "version": "1.0.0",
   "description": "Master Academy project",
   "scripts": {
@@ -17,12 +17,12 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
+    "@ngui/datetime-picker": "^0.16.2",
     "angular-in-memory-web-api": "^0.3.1",
     "angular2-google-maps": "^0.17.0",
     "angular2-moment": "^1.3.3",
     "core-js": "~2.4.1",
     "moment": "^2.18.1",
-    "ng-pick-datetime": "^4.1.0",
     "ng2-bootstrap": "^1.4.2",
     "ng2-ckeditor": "^1.1.6",
     "ng2-toastr": "~1.3.6",

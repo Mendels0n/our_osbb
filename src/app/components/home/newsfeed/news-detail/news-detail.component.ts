@@ -2,15 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { NewsfeedService } from '../../../../services/newsfeed.service';
 import { UserService } from '../../../../services/user.service'; 
- 
-class News{
-    id:number;
-    title:string;
-    content:string;
-    user_id:number;
-    created_at:string;
-    updated_at:string;
-}
+import { News } from '../../../../models/news.model';
+
 
 @Component({
     selector: 'news-detail',

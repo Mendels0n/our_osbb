@@ -10,11 +10,23 @@ import { Router } from '@angular/router';
 })
 export class NewsfeedComponent implements OnInit {
     news: any;
-    comments:any;
-    constructor(private newsfeedService: NewsfeedService,private userService:UserService,private router:Router) {}
+    comments: any;
+    role: string;
+    mainRole: string;
+    term:string;
+
+    constructor(private newsfeedService: NewsfeedService, private userService: UserService, private router: Router) {
+        this.mainRole = "main";
+        this.loadRole();
+        this.term = 'all';
+    }
 
     ngOnInit() {
         this.loadNews();
+    }
+    loadRole() {
+        this.role = localStorage.getItem('role');
+        this.role = this.role.replace(/"/g, '');
     }
     loadNews() {
         this.newsfeedService.allNews().subscribe(
@@ -22,7 +34,7 @@ export class NewsfeedComponent implements OnInit {
                 this.news = news;
             },
             error => {
-                if(error == 'Unauthorized. Invalid or expired token.'){
+                if (error == 'Unauthorized. Invalid or expired token.') {
                     localStorage.clear();
                     this.router.navigate(['/login']);
                 }

@@ -22,6 +22,7 @@ export class CommentComponent implements OnInit {
     ngOnInit() {
         this.loadRole();
     }
+
     delete() {
         this.commentsService.delete(this.comment.id)
             .subscribe(
@@ -32,10 +33,12 @@ export class CommentComponent implements OnInit {
                 }
             )
     }
+
     loadRole(){
         this.role = localStorage.getItem('role');
         this.role = this.role.replace(/"/g,'');
     }
+    
     edit(value: boolean) {
         this.editMode = value;
         if (!value) {
@@ -50,4 +53,5 @@ export class CommentComponent implements OnInit {
                 )
         }
     }
+    
 }

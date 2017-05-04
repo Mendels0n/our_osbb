@@ -1,5 +1,32 @@
-<ul>
-    <li *ngFor="let vote of votes">
-        <a [routerLink]="[ '/votes', vote.id ]">{{vote.title}}</a>
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="btn-group pull-left selected" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" [routerLink]="[ '/create-vote']">Cоздать голосования</button>
+        </div>
+        <div class="btn-group pull-right selected" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" [class.btn-success]="term == 'all'" (click)="term = 'all'">Все</button>
+            <button type="button" class="btn btn-default" [class.btn-success]="term == 'new'" (click)="term = 'new'">Активные</button>
+            <button type="button" class="btn btn-default" [class.btn-success]="term == 'old'" (click)="term = 'old'">Прошедшие</button>
+        </div>
+    </div>
+    <div class="row row-flex row-flex-wrap">
+        <div class="col-sm-4 col-md-3" *ngFor="let vote of votes | reverse | sortForDate:term" >
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>{{vote.title}}</h4>
+                    <div class="content">
+                        <div *ngIf="checkDate(vote.end_date)">
+                            <p>Начало : {{vote.start_date | amDateFormat: 'YYYY-MM-DD HH:mm'}}</p>
+                            <p>Конец : {{vote.end_date | amCalendar}} </p>
+                        </div>
+                        <div *ngIf="!checkDate(vote.end_date)">
+                            <p>Голосование закончилось </p>
+                        </div>
+                    </div>
+                    <p class="button"><a [routerLink]="[ '/votes', vote.id ]" class="btn btn-primary" [class.btn-success]="!checkDate(vote.end_date)"
+                            role="button">Подробней</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
