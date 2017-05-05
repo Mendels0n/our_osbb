@@ -3,13 +3,13 @@
         <button type="button" class="btn btn-default" [routerLink]="[ '/create-news']">Cоздать новость</button>
     </div>
     <div class="btn-group pull-right selected" role="group">
-        <button type="button" class="btn btn-default" [class.btn-success]="term == 'all'" (click)="term = 'all'">Все</button>
-        <button type="button" class="btn btn-default" [class.btn-success]="term == 'news'" (click)="term = 'news'">За 24 часа</button>
+        <button type="button" class="btn btn-default" [class.btn-success]="term == 'all'" (click)="sorting('all')">Все</button>
+        <button type="button" class="btn btn-default" [class.btn-success]="term == 'news'" (click)="sorting('news')">За 24 часа</button>
     </div>
 </div>
 <div class="row">
     <div *ngIf="news?.length === 0" class="text-center">No Results</div>
-    <div class="well" *ngFor="let item of news | reverse | sortForDate:term">
+    <div class="well" *ngFor="let item of pagedItems">
         <div class="media">
             <div class="media-body ">
                 <h4 class="media-heading">{{item.title}}</h4>
@@ -22,4 +22,26 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">Первая</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Пред</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">След</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Последняя</a>
+                </li>
+            </ul>
+    </div>
+    
 </div>

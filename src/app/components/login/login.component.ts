@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
                    this.router.navigate(['/home'])
                 },
                 error =>{
-                    this.error = error;
+                    (error == 'Unauthorized.')? this.error = 'Неверный емейл или пароль!': this.error = error;
                 }
             );
     }

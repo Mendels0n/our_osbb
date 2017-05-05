@@ -15,10 +15,10 @@ export class NavbarComponent implements OnInit {
     welcomePage:boolean;
 
     constructor(public userService: UserService, private router: Router, private location: Location) {
-        this.title = "ОСББ";
+        this.title = "Our OSBB";
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
-               (event.url == '/welcome' || event.url == '/' ) ? this.welcomePage = true : this.welcomePage = false;
+               (event.url == '/welcome') ? this.welcomePage = true : this.welcomePage = false;
             }
         });
     }

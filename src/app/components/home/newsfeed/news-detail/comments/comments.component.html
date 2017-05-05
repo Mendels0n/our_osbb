@@ -1,7 +1,7 @@
 <div class="panel panel-white post">
     <div class="post-footer">
         <form novalidate (ngSubmit)="createComment()" [formGroup]="form">
-            <div class="input-group col-md-6">
+            <div class="input-group col-xs-6">
                 <input class="form-control" [(ngModel)]="model.body" formControlName="comment" placeholder="" type="text">
                 <div class="input-group-addon">
                     <button type="submit" [disabled]="form.invalid">Отправить</button>

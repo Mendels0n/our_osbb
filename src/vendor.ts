@@ -12,6 +12,7 @@ if (process.env.ENV !== 'production') {
 
 // Angular 2 Deps
 import 'rxjs/Rx';
+import 'underscore';
 
 
 

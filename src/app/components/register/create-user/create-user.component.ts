@@ -43,13 +43,13 @@ export class CreateUserComponent implements OnInit {
             country: ['', Validators.compose([Validators.required])],
             city: ['', Validators.compose([Validators.required])],
             street: ['', Validators.compose([Validators.required])],
-            houseNumber: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]/*)$"), Validators.maxLength(5)])],
+            houseNumber: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(5)])],
             osbbNumber: ['', Validators.compose([Validators.required, , Validators.pattern("^(0|[1-9][0-9]*)$")])]
         });
         this.registerUser = this.fb.group({
             firstName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
             lastName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-            apartment: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(4)])],
+            apartment: ['', Validators.compose([Validators.required, Validators.pattern("^(0|[1-9][0-9]*)$"), Validators.maxLength(5)])],
             email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")],
                 [checkUniqueEmail(this.userService, this)]
             ],

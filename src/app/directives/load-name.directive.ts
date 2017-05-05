@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, AfterContentInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/user.service';   
+
 
 @Directive({ 
 	selector: '[loadNames]' 
@@ -19,11 +20,10 @@ export class LoadNameDirective implements AfterContentInit {
                     this.el.nativeElement.innerHTML = `${data.first_name} ${data.last_name}`;
                 },
                 error => {
-                    this.change();
                 }
             )
         }else{
-           setTimeout(()=>{this.change()},500);
+           setTimeout(()=>{this.change()},1000);
         }
     }
 

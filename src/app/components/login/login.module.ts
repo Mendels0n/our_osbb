@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { LoginComponent } from "./login.component";
 import { AlertModule } from 'ng2-bootstrap/alert';
-
+import { RouterModule } from '@angular/router';
 import { UserService } from "../../services/user.service";
 
 
@@ -13,6 +13,7 @@ import { UserService } from "../../services/user.service";
     imports: [
         CommonModule,
         FormsModule,
+        RouterModule,
         ReactiveFormsModule,
         HttpModule,
         AlertModule.forRoot()

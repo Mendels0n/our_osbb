@@ -6,9 +6,9 @@ import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {MomentModule} from 'angular2-moment';
+import { MomentModule } from 'angular2-moment';
 import { NguiDatetimePickerModule, NguiDatetime } from '@ngui/datetime-picker';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { HomeComponent } from './home.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
@@ -28,15 +28,17 @@ import { VotesComponent } from './votes/votes.component';
 import { VotesService } from '../../services/votes.service';
 import { VoteComponent } from './votes/vote/vote.component';
 import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
+import { PagerService } from '../../services/pager.service';
+
 NguiDatetime.locale = {
 
-    date: 'date',
+    date: 'дата',
     time: 'время',
 
-    year: 'year',
-    month: 'month',
-    day: 'day',
-    hour: 'Часов',
+    year: 'год',
+    month: 'месяц',
+    day: 'день',
+    hour: 'часов',
     minute: 'минут',
     currentTime: "текущие время"
 
@@ -55,6 +57,7 @@ NguiDatetime.locale = {
 		PipesModule,
 		CKEditorModule,
 		MomentModule,
+		PaginationModule.forRoot(),
 		BsDropdownModule.forRoot(),
 		ModalModule.forRoot(),
 		HttpModule
@@ -74,6 +77,6 @@ NguiDatetime.locale = {
 	exports: [ 
 		HomeComponent
 	],
-	providers: [ UnregisteretService, NewsfeedService, CommentsService, VotesService ]
+	providers: [ UnregisteretService, NewsfeedService, CommentsService, VotesService, PagerService ]
 })
 export class HomeModule { }

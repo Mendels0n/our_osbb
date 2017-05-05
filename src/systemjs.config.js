@@ -21,6 +21,8 @@
             // other libraries
             "ng2-ckeditor": "npm:ng2-ckeditor",
             'moment': 'node_modules/moment/moment.js',
+            'underscore': './node_modules/underscore/underscore.js',            
+            
             'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'rxjs': 'npm:rxjs'

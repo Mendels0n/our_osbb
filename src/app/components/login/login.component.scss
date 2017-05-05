@@ -1,13 +1,73 @@
 input.ng-touched.ng-invalid {
-	border:solid red 2px;
+    border: solid red 2px;
 }
+
 input.ng-touched.ng-valid {
-	border:solid green 2px;
+    border: solid green 2px;
 }
-.alert{
-	margin: 5px;
-	padding:5px 5px 5px 15px;
+
+.alert {
+    margin: 5px;
+    padding: 5px 5px 5px 15px;
 }
-.container{
-	width: 900px;
+
+.container {
+    width: 900px;
+}
+
+.auth-separator {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #ccd0d9;
+}
+
+.auth-separator::after {
+    content: 'ИЛИ';
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 39px;
+}
+
+.auth-separator::after,
+.auth-separator::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-top: 64px;
+    margin-left: -20px;
+    width: 39px;
+    height: 39px;
+}
+
+.auth-separator::before {
+    content: '';
+    border-radius: 3px;
+    background-color: #ccd0d9;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.row-border {
+    position: relative;
+    margin-top: 25px;
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 2px #ccd0d9;
+}
+.auth-text{
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    margin: 12px 0 12px 0;
+}
+h3,h4{
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+}
+.auth-headers {
+    margin-top: 25%
 }
