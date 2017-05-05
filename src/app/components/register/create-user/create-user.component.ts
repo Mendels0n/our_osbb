@@ -63,10 +63,8 @@ export class CreateUserComponent implements OnInit {
             this.loadOsbb();
         } else {
             this.changesForms(false, true);
-        }
-       
-        this.searchControl = new FormControl();
-        this.mapsAPILoader.load().then(() => {
+            this.searchControl = new FormControl();
+            this.mapsAPILoader.load().then(() => {
             let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
             autocomplete.addListener("place_changed", () => {
                 this.ngZone.run(() => {
@@ -89,6 +87,9 @@ export class CreateUserComponent implements OnInit {
                 });
             });
         });
+        }
+       
+        
     }
     back() {
         this.location.back();

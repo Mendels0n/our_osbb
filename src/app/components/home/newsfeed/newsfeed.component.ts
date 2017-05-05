@@ -19,6 +19,7 @@ export class NewsfeedComponent implements OnInit {
         this.mainRole = "main";
         this.loadRole();
         this.term = 'all';
+        this.role = 'user';
     }
 
     ngOnInit() {

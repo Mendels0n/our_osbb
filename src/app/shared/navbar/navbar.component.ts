@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router, NavigationStart} from '@angular/router';
+import { Location, } from '@angular/common';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,20 +9,26 @@ import { UserService } from '../../services/user.service';
     styleUrls: ['navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    token:boolean;
+    token: boolean;
     public isCollapsed: boolean = true;
     title: string;
+    welcomePage:boolean;
 
-    constructor(public userService: UserService, private router:Router) {
+    constructor(public userService: UserService, private router: Router, private location: Location) {
         this.title = "ОСББ";
+        router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+               (event.url == '/welcome' || event.url == '/' ) ? this.welcomePage = true : this.welcomePage = false;
+            }
+        });
     }
-    ngOnInit() {
-        console.log(this.token);
+    ngOnInit() {   
     }
     
-    logout(){
+    logout() {
         localStorage.clear();
         this.router.navigate(['/login']);
+
     }
 
     public collapsed(event: any): void {}

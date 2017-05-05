@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 
 import { RegisterModule } from './register/register.module';
 import { HomeModule } from './home/home.module';
@@ -15,6 +15,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
+		RouterModule,
 		HomeModule,
 		LoginModule,
 		RegisterModule
