@@ -10,16 +10,21 @@ div {
 
 nav {
     height: 50px;
-    display: table;
     li {
-        display: table-cell;
+        display: inline-block;
         padding-right: 20px;
+        padding-top: 15px;
         padding-left: 20px;
+        padding-bottom: 15px;
         font-size: 14px;
         color: #586069;
         vertical-align: middle;
         border-bottom: 2px solid transparent;
     }
+   .navbar-right{
+        float: right;
+        margin-right: 0px;
+   }
     .active {
         border-bottom-color: #e36209;
     }
@@ -29,6 +34,7 @@ a:hover {
     color: #24292e;
     text-decoration: none;
 }
+
 a:focus {
     text-decoration: none;
 }

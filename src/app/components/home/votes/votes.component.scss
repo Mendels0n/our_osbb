@@ -4,7 +4,18 @@
 }
 .container{
     width: 900px;
-    margin-top:5px;
+}
+.row:first-child{
+    padding: 5px 5px 0 5px;
+}
+.row-border {
+    position: relative;
+    margin-top: 5px;
+    padding-top: 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 2px #ccd0d9;
 }
 
 .row-flex-wrap {
@@ -45,5 +56,4 @@ p{
 .button {
   bottom: 0;
   margin: auto;
-
 }

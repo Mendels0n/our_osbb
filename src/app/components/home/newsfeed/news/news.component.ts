@@ -18,8 +18,8 @@ export class NewsComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute, private newsfeedService:NewsfeedService) { 
         this.form = this.fb.group({
-            title: ['', Validators.compose([Validators.required])],
-            content: ['',Validators.compose([Validators.required])]
+            title: ['', Validators.compose([Validators.required,Validators.minLength(3)])],
+            content: ['',Validators.compose([Validators.required,Validators.minLength(5 )])]
         });
         this.newsId = this.route.snapshot.params['id'];
         this.config = {

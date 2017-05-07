@@ -1,0 +1,27 @@
+.row-border {
+	margin-top: 5px;
+	background-color: #fff;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 0 0 2px #ccd0d9;
+}
+
+.profile-img {
+	margin: 5px 0 5px 0;
+}
+
+h4 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+.user-role {
+	font-family: 'Merriweather', serif;
+    font-weight: 400;
+	position: relative;
+	top: -30px;
+}
+.btn-group{
+	display: block;
+	padding: 5px 0 0 0;
+}

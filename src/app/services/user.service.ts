@@ -49,6 +49,12 @@ export class UserService {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
+  editUser(model:User){
+    let data = new URLSearchParams();
+    for(let key in model){
+      data.append(key,model[key])
+    }
+  }
   getAllUsers(){
     return this.http.get(`${this.url}/api/users/`, headers())
     .map((res:Response) => res.json())

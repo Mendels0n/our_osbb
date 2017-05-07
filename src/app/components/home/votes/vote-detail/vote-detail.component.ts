@@ -21,7 +21,7 @@ export class VoteDetailComponent implements OnInit {
     button:Button;
     loading:boolean;
     votesEnd:boolean;
-    role:string;
+    role:string = 'user';
     mainRole:string;
     count:any = {};
 
@@ -34,6 +34,7 @@ export class VoteDetailComponent implements OnInit {
     }
     ngOnInit() {
         this.loadVotes();
+        this.loadRole();
         this.checkAllVotes();
     }
 

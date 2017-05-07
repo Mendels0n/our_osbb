@@ -13,13 +13,11 @@ import { CollapseModule } from "ng2-bootstrap/collapse";
     ],
     declarations: [ 
         NavbarComponent,
-
         SidebarComponent
 
     ],
     exports: [
         NavbarComponent,
-
         SidebarComponent
     ],
     providers: [

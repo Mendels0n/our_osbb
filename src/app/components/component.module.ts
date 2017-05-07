@@ -8,8 +8,6 @@ import { HomeModule } from './home/home.module';
 import { LoginModule } from "./login/login.module";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
-
-
 @NgModule({
 	imports: [
 		CommonModule,

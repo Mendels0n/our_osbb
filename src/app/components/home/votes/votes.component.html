@@ -9,7 +9,7 @@
             <button type="button" class="btn btn-default" [class.btn-success]="term == 'old'" (click)="term = 'old'">Прошедшие</button>
         </div>
     </div>
-    <div class="row row-flex row-flex-wrap">
+    <div class="row row-flex row-flex-wrap row-border">
         <div class="col-xs-3" *ngFor="let vote of votes | reverse | sortForDate:term" >
             <div class="thumbnail">
                 <div class="caption">

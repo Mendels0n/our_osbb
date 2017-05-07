@@ -1,4 +1,5 @@
-import { Directive, ElementRef, Input, AfterContentInit } from '@angular/core';
+import { Directive, ElementRef, Input, AfterContentInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';   
 
 
@@ -6,16 +7,16 @@ import { UserService } from '../services/user.service';
 	selector: '[loadNames]' 
 })
 export class LoadNameDirective implements AfterContentInit {
-    @Input() loadNames: any;
+    @Input("loadNames") id: any;
 
-    constructor(private el: ElementRef, private userService: UserService) {
+    constructor(private el: ElementRef, private userService: UserService, private router:Router) {
     }
     ngAfterContentInit() {
             this.change();
     }
     private change() {
-        if (this.loadNames !== undefined) {
-            this.userService.userById(this.loadNames).subscribe(
+        if (this.id !== undefined) {
+            this.userService.userById(this.id).subscribe(
                 data => {
                     this.el.nativeElement.innerHTML = `${data.first_name} ${data.last_name}`;
                 },
@@ -27,4 +28,9 @@ export class LoadNameDirective implements AfterContentInit {
         }
     }
 
+    @HostListener('click') navigateProfile(){
+        if(this.id !== undefined){
+            this.router.navigate(['/profile', this.id]);
+        }
+    }
 }

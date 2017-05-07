@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadNameDirective } from './load-name.directive';
-
-
 import { ReadPasswordDirective } from './read-password.directive';
 
 
@@ -16,7 +14,6 @@ import { ReadPasswordDirective } from './read-password.directive';
 	],
 	exports: [ 
 		ReadPasswordDirective,
-
 		LoadNameDirective
 	]
 })
