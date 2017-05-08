@@ -1,4 +1,4 @@
-import {trigger, state, animate, style, transition} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 export function fallIn() {
     return trigger('fallIn', [

@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MomentModule} from 'angular2-moment';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { ComponentModule } from './components/component.module';
 import { routing, appRoutingProviders } from './app.routing';
@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guards';
         BrowserModule,
         ComponentModule,
         SharedModule,
+        BrowserAnimationsModule,
         MomentModule,
         routing
     ],

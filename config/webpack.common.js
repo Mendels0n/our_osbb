@@ -6,6 +6,7 @@ let helpers = require('./helpers');
 module.exports = {
   entry: {
     'vendor': './src/vendor.ts',
+    'polyfills':'./src/polyfills.ts',
     'app': './src/main.ts'
   },
 
@@ -67,7 +68,7 @@ module.exports = {
     }),
     // new webpack.OldWatchingPlugin(),
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /angular(\\|\/)core(\\|\/)@angular/,
       helpers.root(),
       {}
     ),

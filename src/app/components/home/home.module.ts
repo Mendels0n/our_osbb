@@ -20,12 +20,13 @@ import { UserListComponent } from './user-list/user-list.component';
 import { CommentsComponent } from './newsfeed/news-detail/comments/comments.component';
 import { CommentComponent } from './newsfeed/news-detail/comments/comment/comment.component';
 import { DirectivesModule } from '../../directives/directives.module';
-import { UnregisteretService, NewsfeedService, CommentsService, VotesService, PagerService } from '../../services/index';
+import { UnregisteretService, NewsfeedService, CommentsService, VotesService, PagerService, MessagesService } from '../../services/index';
 import { PipesModule } from '../../pipes/pipes.module';
 import { VotesComponent } from './votes/votes.component';
 import { VoteComponent } from './votes/vote/vote.component';
 import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessagesComponent } from './messages/messages.component';
 
 NguiDatetime.locale = {
 
@@ -67,6 +68,7 @@ NguiDatetime.locale = {
 		ProfileComponent,
 		CommentComponent,
 		CommentsComponent,
+		MessagesComponent,
 		VotesComponent,
 		VoteDetailComponent,
 		VoteComponent,
@@ -75,6 +77,6 @@ NguiDatetime.locale = {
 	exports: [ 
 		HomeComponent
 	],
-	providers: [ UnregisteretService, NewsfeedService, CommentsService, VotesService, PagerService ]
+	providers: [ UnregisteretService, NewsfeedService, CommentsService, VotesService, PagerService, MessagesService ]
 })
 export class HomeModule { }
