@@ -26,7 +26,7 @@ import { VotesComponent } from './votes/votes.component';
 import { VoteComponent } from './votes/vote/vote.component';
 import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MessagesComponent } from './messages/messages.component';
+import { MessagesComponent, MessageComponent, CreateMessageComponent } from './messages/index';
 
 NguiDatetime.locale = {
 
@@ -69,6 +69,8 @@ NguiDatetime.locale = {
 		CommentComponent,
 		CommentsComponent,
 		MessagesComponent,
+		MessageComponent,
+		CreateMessageComponent,
 		VotesComponent,
 		VoteDetailComponent,
 		VoteComponent,

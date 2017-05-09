@@ -13,7 +13,7 @@ export class CommentsService {
         this.url = API_URL;
     }
     getComments(id:number){
-        return this.http.get(`${this.url}/api/newsfeed/${id}/comments`, headers())
+        return this.http.get(`${this.url}/api/newsfeeds/${id}/comments`, headers())
         .map((res:Response) => res.json() )
         .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
@@ -22,7 +22,7 @@ export class CommentsService {
         for (let key in model) {
             data.append(key, model[key])
         }
-        return this.http.post(`${this.url}/api/comment`, data, headers())
+        return this.http.post(`${this.url}/api/comments`, data, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
@@ -31,12 +31,12 @@ export class CommentsService {
         for (let key in model) {
             data.append(key, model[key])
         }
-        return this.http.patch(`${this.url}/api/comment/${id}`, data, headers())
+        return this.http.patch(`${this.url}/api/comments/${id}`, data, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'));
     }
     delete(id:any){
-        return this.http.delete(`${this.url}/api/comment/${id}`, headers())
+        return this.http.delete(`${this.url}/api/comments/${id}`, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'));
     }

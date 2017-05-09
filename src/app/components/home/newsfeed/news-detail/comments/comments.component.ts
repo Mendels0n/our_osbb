@@ -23,7 +23,6 @@ export class CommentsComponent implements OnInit {
     }
     ngOnInit() { 
         this.loadComments();
-        // setInterval(()=> this.checkChanges(),9000);
     }
     loadComments(){
         this.commentsService.getComments(this.newsId).subscribe(

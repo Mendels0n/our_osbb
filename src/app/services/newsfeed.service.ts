@@ -12,17 +12,17 @@ export class NewsfeedService {
         this.url = API_URL;
     }
     allNews() {
-        return this.http.get(`${this.url}/api/newsfeed`, headers())
+        return this.http.get(`${this.url}/api/newsfeeds`, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
     }
     getNews(id: number) {
-        return this.http.get(`${this.url}/api/newsfeed/${id}`, headers())
+        return this.http.get(`${this.url}/api/newsfeeds/${id}`, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
     deleteNews(id: any) {
-        return this.http.delete(`${this.url}/api/newsfeed/${id}`, headers())
+        return this.http.delete(`${this.url}/api/newsfeeds/${id}`, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }
@@ -31,7 +31,7 @@ export class NewsfeedService {
         for (let key in model) {
             data.append(key, model[key])
         }
-        return this.http.patch(`${this.url}/api/newsfeed/${id}`, data, headers())
+        return this.http.patch(`${this.url}/api/newsfeeds/${id}`, data, headers())
             .map((response: Response) => response.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'));
     }
@@ -40,7 +40,7 @@ export class NewsfeedService {
         for (let key in model) {
             data.append(key, model[key])
         }
-        return this.http.post(`${this.url}/api/newsfeed`, data, headers())
+        return this.http.post(`${this.url}/api/newsfeeds`, data, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().errors || 'Server error'))
     }

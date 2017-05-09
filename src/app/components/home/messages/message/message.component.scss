@@ -1,0 +1,28 @@
+.name {
+    float: left;
+}
+.name:hover{
+    color:black;
+    text-decoration: underline;
+}
+a.list-group-item.read {
+    color: #222;
+    background-color: #F3F3F3;
+}
+.list-group-item {
+    overflow: hidden;
+    .text-muted{
+        overflow: hidden;
+        max-width: 360px;
+        white-space: nowrap;
+    }
+}
+.badge{
+    padding-right: 5px;
+}
+.list-group-item:hover{
+    background-color: white;
+}
+.no-margin{
+    margin: 5px;
+}

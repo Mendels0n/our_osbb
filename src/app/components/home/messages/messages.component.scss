@@ -1,0 +1,35 @@
+.nav-tabs .glyphicon:not(.no-margin) {
+    margin-right: 10px;
+}
+
+.tab-pane .list-group-item:first-child {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.tab-pane .list-group-item:last-child {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+
+
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.nav-pills>li>a {
+    padding: 5px 10px;
+}
+
+
+.row-border {
+    margin-top: 5px;
+    padding-top: 5px;
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 2px #ccd0d9;
+}

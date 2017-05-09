@@ -11,6 +11,7 @@ import { VotesComponent } from './votes/votes.component';
 import { VoteComponent } from './votes/vote/vote.component';
 import { VoteDetailComponent } from './votes/vote-detail/vote-detail.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessagesComponent } from './messages/messages.component';
 const homeRoutes: Routes = [{
   path: '',
   component: HomeComponent,
@@ -49,6 +50,9 @@ const homeRoutes: Routes = [{
   {
     path:'profile/:id',
     component: ProfileComponent
+  },{
+    path:'messages',
+    component: MessagesComponent
   }]
 }];
 
