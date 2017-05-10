@@ -49,14 +49,27 @@ export class UserService {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
-  editUser(model:User){
+  editUser(id:string, model:User){
     let data = new URLSearchParams();
     for(let key in model){
       data.append(key,model[key])
     }
+    return this.http.patch(`${this.url}/api/users/${id}`, data, headers())
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }
   getAllUsers(){
     return this.http.get(`${this.url}/api/users/`, headers())
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
+  }
+  getAllNewsfeedUser(id:string){
+    return this.http.get(`${this.url}/api/users/${id}/newsfeeds`, headers())
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
+  }
+  getAllСommentsUser(id:string){
+    return this.http.get(`${this.url}/api/users/${id}/comments`, headers())
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().errors || 'Server error'));
   }

@@ -21,7 +21,7 @@ export class CreateMessageComponent implements OnInit {
     form: FormGroup;
     userId: string;
     @Input() showCreateMessage: any;
-    @Input() message:any;
+    @Input() message:any = {};
     @Output() hideCreateMessage = new EventEmitter < any > ();
     @Output() addMessage = new EventEmitter < any > ();
     userList: any = [];
@@ -42,24 +42,28 @@ export class CreateMessageComponent implements OnInit {
                 title: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
                 content: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
             });
-            this.model.recipient_id = this.message.sender_id;
             this.model.title = this.message.title;
-        } else if(!this.message) {
+        }else if(this.message.id){
+            this.form = this.fb.group({
+                title: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+                content: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
+            });
+        }else {
             this.form = this.fb.group({
                 recipientId: ['', Validators.compose([Validators.required])],
                 title: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
                 content: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
             });
-            this.model.recipient_id = this.models.id;
-        }else {
-            this.form = this.fb.group({
-                title: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-                content: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
-            });
-            this.model.recipient_id = this.message.id;
         }
     }
     create() {
+        if(this.message.sender_id){
+            this.model.recipient_id = this.message.sender_id;
+        }else if (this.message.id){
+            this.model.recipient_id = this.message.id;
+        }else{
+            this.model.recipient_id = this.models.id;
+        }
         this.model.sender_id = this.userId;
         this.messagesService.createMessages(this.model).subscribe(
             data => {
@@ -88,7 +92,6 @@ export class CreateMessageComponent implements OnInit {
         )
     }
     close() {
-        console.log('users', this.userList)
         this.hideCreateMessage.emit(false);
     }
 }

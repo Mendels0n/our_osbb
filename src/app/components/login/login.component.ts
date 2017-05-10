@@ -29,7 +29,11 @@ export class LoginComponent implements OnInit {
                    this.router.navigate(['/home'])
                 },
                 error =>{
-                    (error == 'Unauthorized.')? this.error = 'Неверный емейл или пароль!': this.error = error;
+                    if(error == 'Unauthorized.'){
+                        this.error = 'Неверный емейл или пароль!';
+                    }else if (error == "Your account is not approved"){
+                        this.error = 'Аккаунт не подключон к ОСББ.';
+                    }
                 }
             );
     }

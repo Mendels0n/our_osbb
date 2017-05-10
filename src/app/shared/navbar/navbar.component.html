@@ -1,7 +1,7 @@
 <nav class="navbar" *ngIf="!welcomePage">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" [routerLink]="['/']">{{title}}</a>
+			<a class="navbar-brand" [routerLink]="['/']">Neighbors</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right" *ngIf="!userService.checkToken()">
 			<li><a [routerLink]="['/login']" routerLinkActive="active">Войти</a></li>

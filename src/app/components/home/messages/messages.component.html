@@ -9,12 +9,12 @@
         </ul>
     </div>
     <div class="col-xs-10">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
+ 
+        <!--<ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab">Новые</a></li>
             <li><a>Прочитаные</a></li>
             <li><a>Все</a></li>
-        </ul>
+        </ul>-->
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane fade in active"> 
@@ -25,4 +25,4 @@
         </div>
     </div>
 </div>
-<create-message (addMessage)="addMessage($event)" (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>
+<create-message [message]="" (addMessage)="addMessage($event)" (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>

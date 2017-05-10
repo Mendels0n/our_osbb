@@ -4,7 +4,8 @@
             <div class="profile-img col-xs-3">
                 <img src="http://placehold.it/200x165" alt="" class="img-rounded img-responsive" />
             </div>
-            <div class="profile-content col-xs-9">
+            <div class="profile-content col-xs-9" *ngIf="editUser; else elseTemplate">
+
                 <h4>{{user?.first_name}} {{user?.last_name}}</h4>
                 <span *ngIf="user?.role == 'main'" class="pull-right user-role">Глава ОСББ</span>
                 <span *ngIf="user?.role == 'user'" class="pull-right user-role">Житель</span>
@@ -13,10 +14,49 @@
                     <div *ngIf="userId != profileId">
                         <button type="button" class="btn btn-primary" *ngIf="profileId" (click)="showCreatedMessage('true')">Написать сообщения</button>
                     </div>
-                    <button type="button" class="btn btn-default" *ngIf="!profileId">Редактировать</button>
+                    <button type="button" class="btn btn-default" *ngIf="!profileId" (click)="edit(false,false)">Редактировать</button>
+                </div>
+            </div>
+        </div>
+        <ng-template #elseTemplate>
+            <div class="profile-content col-xs-9">
+                <form (ngSubmit)="edit(true,true)" [formGroup]="form" novalidate>
+                    <h4>Редактировать</h4>
+                    <div class="row">
+                        <div class="form-group col-xs-3">
+                            <label>Имя</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="user.first_name" formControlName="fistName">
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label>Фамилия</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="user.last_name" formControlName="lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Квартира</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="user.room" formControlName="room">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" [disabled]="form.invalid">Далее</button>
+                        <button type="button" class="btn btn-default" (click)="edit(true)">Назад</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <div class="row">
+            <div class="col-xs-6">
+                <h5>Новости жителя</h5>
+                <div class="list-group">
+                    <a [routerLink]="[ '/newsfeed', news.id ]" class="list-group-item" *ngFor="let news of newsfeeds; let i=index">{{i+1}}. {{news.title}}</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h5>Комментарии жителя</h5>
+                <div class="list-group">
+                    <a [routerLink]="[ '/newsfeed', comment.newsfeed_id ]" class="list-group-item" *ngFor="let comment of comments;let i=index">{{i+1}}. {{comment.body}}</a>
                 </div>
             </div>
         </div>
     </div>
-    <create-message [message]="user"  (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>
+    <create-message [message]="sendUser" (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>
 </div>

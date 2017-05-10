@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { UnregisteretService } from '../../../services/unregisteret.service';
+import { UnregisteretService, UserService } from '../../../services/index';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -8,20 +8,34 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
     styleUrls: ['user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-    users:any;
+    newUsers:any;
+    users:any;  
     reason:string;
+    role:string;
+    show:string = "all";
+    mainRole = "main";
+
     @ViewChild('staticModal') public staticModal:ModalDirective;
-    constructor(private service: UnregisteretService) {}
+    constructor(private service: UnregisteretService, private userService:UserService) {}
 
     ngOnInit() {
         this.loadUser();
+        this.loadRole();
+    }
+    loadRole(){
+        this.role = localStorage.getItem('role');
+        this.role = this.role.replace(/"/g,'');
     }
     loadUser(){
         this.service.getAll().subscribe(
             data => {
-                console.log(data);
-                this.users = data;
+                this.newUsers = data;
             })
+        this.userService.getAllUsers().subscribe(
+            data =>{
+                this.users = data;
+            }
+        )
     }
     aprove(id:any){
         this.service.aprove(id).subscribe(

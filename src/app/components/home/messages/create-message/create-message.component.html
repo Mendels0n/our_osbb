@@ -4,7 +4,7 @@
             <form name="form" (ngSubmit)="create()" [formGroup]="form" novalidate>
                 <h4 class="header-modal">Новое сообщение</h4>
                 <div class="row">
-                    <div class="form-group col-xs-7" *ngIf="!message">
+                    <div class="form-group col-xs-7" *ngIf="!message?.sender_id && !message?.id">
                         <label>Получатель</label>
                         <input ngui-auto-complete [(ngModel)]="models" [source]="userList" list-formatter="name" placeholder="например, Вася Пупкин"
                             class="form-control" type="text" no-match-found-text="Житель не найден." formControlName="recipientId">

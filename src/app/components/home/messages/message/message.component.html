@@ -28,4 +28,4 @@
         </div>
     </ng-template>
 </a>
-<create-message [message]="message" (addMessage)="addMessage.emit($event)"  (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>
+<create-message [message]="message" (addMessage)="addMessage?.emit($event)"  (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>

@@ -1,1 +1,1 @@
-export const API_URL = 'https://our-osbb-test.herokuapp.com';
+export const API_URL = 'https://our-osbb.herokuapp.com';

@@ -1,4 +1,18 @@
 <div class="row">
+    <div class="btn-group pull-right selected" role="group">
+        <button type="button" class="btn btn-default" [class.btn-success]="show == 'all'" (click)="show = 'all'">Все жители</button>
+        <button type="button" class="btn btn-default" [class.btn-success]="show == 'news'" *ngIf="role == mainRole" (click)="show = 'new'">Новые жители</button>
+    </div>
+</div>
+<div class="row row-border" *ngIf="show == 'all'">
+    <div class="col-xs-6 col-xs-offset-3">
+        <h5 class="text-center">Список жителей</h5>
+        <div class="list-group">
+            <a [routerLink]="[ '/profile', user.id ]" class="list-group-item" [class.hide]="!user.approved" *ngFor="let user of users; let i=index">{{i+1}}. {{user.first_name}} {{user.last_name}}</a>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="show == 'new'">
     <table class="table table-hover">
         <tr class="info">
             <th>№</th>
@@ -8,7 +22,7 @@
             <th>Дата подключения</th>
             <th>Действия</th>
         </tr>
-        <tr *ngFor="let item of users;let i = index">
+        <tr *ngFor="let item of newUsers;let i = index">
             <td>{{i+1}}</td>
             <td>{{item.first_name}} {{item.last_name}}</td>
             <td>{{item.email}}</td>

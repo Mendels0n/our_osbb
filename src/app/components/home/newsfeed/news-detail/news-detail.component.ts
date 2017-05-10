@@ -16,8 +16,10 @@ export class NewsDetailComponent implements OnInit {
     role:string;
     mainRole:string;
     loading:boolean;
+    userId:string;
     constructor(private router:Router,private activeRoute: ActivatedRoute, private newsfeedService: NewsfeedService, private userService:UserService) {
         this.news = new News;
+        this.userId = localStorage.getItem('user_id');
         this.mainRole = "main";
         this.loadRole();
     }
