@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
         this.title = "Our OSBB";
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
-               (event.url == '/welcome') ? this.welcomePage = true : this.welcomePage = false;
+               (event.url == '/welcome' || event.url == '/welcome#about') ? this.welcomePage = true : this.welcomePage = false;
             }
         });
     }

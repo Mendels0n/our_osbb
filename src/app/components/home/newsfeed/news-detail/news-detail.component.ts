@@ -15,6 +15,7 @@ export class NewsDetailComponent implements OnInit {
     comments:any;
     role:string;
     mainRole:string;
+    loading:boolean;
     constructor(private router:Router,private activeRoute: ActivatedRoute, private newsfeedService: NewsfeedService, private userService:UserService) {
         this.news = new News;
         this.mainRole = "main";
@@ -29,10 +30,12 @@ export class NewsDetailComponent implements OnInit {
         this.role = this.role.replace(/"/g,'');
     }
     loadNews() {
+        this.loading = true;
         let newsId = this.activeRoute.snapshot.params['id'];
         this.newsfeedService.getNews(newsId).subscribe(
             news => {
                 this.news = news;
+                this.loading = false;
             }
         )
     }

@@ -13,7 +13,7 @@
         <div class="media">
             <div class="media-body ">
                 <h4 class="media-heading">{{item.title}}</h4>
-                <p [loadNames]="item.user_id"></p>
+                <p [loadNames]="item.user_id" class="pull-right name"></p>
                 <ul class="list-inline list-unstyled">
                     <li><span><i class="glyphicon glyphicon-calendar"></i> {{item.created_at | amCalendar}} </span></li>
                     <li>|</li>

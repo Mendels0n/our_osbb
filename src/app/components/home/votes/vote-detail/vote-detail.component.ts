@@ -117,8 +117,6 @@ export class VoteDetailComponent implements OnInit {
                 this.deleteAgree(false);
                 this.deleteNotAgree(false);
             }
-        } else {
-            console.log('Woow palelhce');
         }
     }
     deleteVote(){
@@ -131,7 +129,6 @@ export class VoteDetailComponent implements OnInit {
             }
         )
     }
-    //Agree
     agree() {
         this.loading = true;
         this.userService.userById(this.userId).subscribe(

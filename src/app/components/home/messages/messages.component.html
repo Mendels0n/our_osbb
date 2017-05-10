@@ -1,32 +1,7 @@
-<div class="row">
-    <form name="form" (ngSubmit)="create()" [formGroup]="form" novalidate>
-        <h3 class="text-center" *ngIf="!newsId">Создание новости</h3>
-        <h3 class="text-center" *ngIf="newsId">Редактировать новость</h3>
-        <div class="form-group col-xs-6">
-            <label>Отправитель</label>
-            <input type="text" [(ngModel)]="messages.sender_id" class="form-control" formControlName="senderId" placeholder="">
-        </div>
-        <div class="form-group col-xs-6">
-            <label>Получатель</label>
-            <input type="text" [(ngModel)]="messages.recipient_id" class="form-control" formControlName="recipientId" placeholder="">
-        </div>
-        <div class="form-group col-xs-6">
-            <label>Тема</label>
-            <input type="text" [(ngModel)]="messages.title" class="form-control" formControlName="title" placeholder="">
-        </div>
-        <div class="form-group col-xs-6">
-            <label>Сообщение</label>
-            <input type="text" [(ngModel)]="messages.body" class="form-control" formControlName="content" placeholder="">
-        </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-default" [disabled]="form.invalid">Отправить</button>
-        </div>
-    </form>
-</div>
 <div class="row row-border">
     <div class="col-xs-2">
-        <a href="#" class="btn btn-danger btn-sm btn-block" role="button">Написать </a>
+        <a  class="btn btn-danger btn-sm btn-block" role="button" (click)="showCreatedMessage('true')" >Написать </a>
         <hr />
         <ul class="nav nav-pills nav-stacked">
             <li [class.active]="show == 'recived'"><a (click)="showMessages('recived')"><span class="badge pull-right">{{recived?.length}}</span>Входящие </a></li>
@@ -44,9 +19,10 @@
         <div class="tab-content">
             <div class="tab-pane fade in active"> 
                 <div class="list-group">
-                <message [message]="item" [show]="show" (delMessage)="deleteMessages($event)" *ngFor="let item of showMessage | reverse"></message>
+                <message [message]="item" [show]="show" (addMessage)="addMessage($event)" (delMessage)="deleteMessages($event)" *ngFor="let item of showMessage | reverse"></message>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<create-message (addMessage)="addMessage($event)" (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>

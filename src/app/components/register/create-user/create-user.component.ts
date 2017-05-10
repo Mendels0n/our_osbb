@@ -65,31 +65,29 @@ export class CreateUserComponent implements OnInit {
             this.changesForms(false, true);
             this.searchControl = new FormControl();
             this.mapsAPILoader.load().then(() => {
-            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-            autocomplete.addListener("place_changed", () => {
-                this.ngZone.run(() => {
-                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-                    if (place.geometry === undefined || place.geometry === null) {
-                        return;
-                    }
-                    for (var i = 0; i < place.address_components.length; i++) {
-                        var addressType = place.address_components[i].types[0];
-                        if(addressType == 'street_number'){
-                            this.osbb.house_number = place.address_components[i].long_name;
-                        }else if(addressType == 'route'){
-                            this.osbb.street = place.address_components[i].long_name;
-                        }else if(addressType == 'locality'){
-                            this.osbb.city = place.address_components[i].long_name;
-                        }else if(addressType == 'country'){
-                            this.osbb.country = place.address_components[i].long_name;
+                let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+                autocomplete.addListener("place_changed", () => {
+                    this.ngZone.run(() => {
+                        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+                        if (place.geometry === undefined || place.geometry === null) {
+                            return;
                         }
-                    }
+                        for (var i = 0; i < place.address_components.length; i++) {
+                            var addressType = place.address_components[i].types[0];
+                            if (addressType == 'street_number') {
+                                this.osbb.house_number = place.address_components[i].long_name;
+                            } else if (addressType == 'route') {
+                                this.osbb.street = place.address_components[i].long_name;
+                            } else if (addressType == 'locality') {
+                                this.osbb.city = place.address_components[i].long_name;
+                            } else if (addressType == 'country') {
+                                this.osbb.country = place.address_components[i].long_name;
+                            }
+                        }
+                    });
                 });
             });
-        });
         }
-       
-        
     }
     back() {
         this.location.back();

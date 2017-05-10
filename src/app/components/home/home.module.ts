@@ -9,6 +9,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { MomentModule } from 'angular2-moment';
 import { NguiDatetimePickerModule, NguiDatetime } from '@ngui/datetime-picker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { HomeComponent } from './home.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
@@ -51,6 +52,7 @@ NguiDatetime.locale = {
 		HomeRoutingModule,
 		DirectivesModule,
 		NguiDatetimePickerModule,
+		NguiAutoCompleteModule,
 		SharedModule,
 		PipesModule,
 		CKEditorModule,

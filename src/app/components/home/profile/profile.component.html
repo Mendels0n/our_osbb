@@ -1,4 +1,4 @@
-<div class="row row-border">
+<div class="row row-border" *ngIf="user != undefined">
     <div class="col-xs-12">
         <div class="row">
             <div class="profile-img col-xs-3">
@@ -10,10 +10,13 @@
                 <span *ngIf="user?.role == 'user'" class="pull-right user-role">Житель</span>
                 <span>Квартира: №{{user?.room}}</span>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" *ngIf="profileId">Написать сообщения</button>
-                    <button type="button" class="btn btn-default" *ngIf="!profileId">Редактировать</button>                    
+                    <div *ngIf="userId != profileId">
+                        <button type="button" class="btn btn-primary" *ngIf="profileId" (click)="showCreatedMessage('true')">Написать сообщения</button>
+                    </div>
+                    <button type="button" class="btn btn-default" *ngIf="!profileId">Редактировать</button>
                 </div>
             </div>
         </div>
     </div>
+    <create-message [message]="user"  (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>
 </div>

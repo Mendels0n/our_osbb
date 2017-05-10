@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
     userId:string;
     user:User;
     profileId:string;
+    showCreatedMessages:any;
         
     constructor(private userService:UserService, private route:ActivatedRoute) { 
         this.userId = localStorage.getItem('user_id');
@@ -28,5 +29,8 @@ export class ProfileComponent implements OnInit {
                 this.user = user;
             }
         )
+    }
+    showCreatedMessage(event:any){
+        this.showCreatedMessages = event;
     }
 }

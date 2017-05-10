@@ -18,7 +18,8 @@
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci doloribus in possimus veniam, ex perspiciatis
                     quibusdam nulla soluta libero excepturi.</p>
-                <a  class="btn btn-primary btn-xl">Узнать больше</a>
+                <a  class="btn btn-primary btn-xl" [routerLink]="['/welcome']" fragment="about" (click)="onAnchorClick()">Узнать больше</a>
+                
             </div>
         </div>
     </header>

@@ -1,4 +1,4 @@
-<a class="list-group-item " [class.read]="message.read_status">
+<a class="list-group-item " *ngIf="message != undefine" [class.read]="message.read_status" [class.hide]="deletedMessage">
     <div class="row">
         <a class="name col-xs-3" [loadNames]="message.recipient_id" *ngIf="show == 'sended'"></a>
         <a class="name col-xs-3 " [loadNames]="message.sender_id" *ngIf="show == 'recived'"></a>
@@ -19,7 +19,7 @@
         </div>
         <div class="row no-margin">
             <div class="btn-group pull-left selected" role="group">
-                <button type="button" class="btn btn-default" >Ответить</button>
+                <button type="button" class="btn btn-default" *ngIf="show == 'recived'" (click)="showCreatedMessage('true')" >Ответить</button>
                 <button type="button" class="btn btn-default" (click)="deleteMessage()">Удалить</button>
             </div>
             <div class="btn-group pull-right" role="group">
@@ -28,3 +28,4 @@
         </div>
     </ng-template>
 </a>
+<create-message [message]="message" (addMessage)="addMessage.emit($event)"  (hideCreateMessage)="showCreatedMessage($event)" *ngIf="showCreatedMessages"></create-message>

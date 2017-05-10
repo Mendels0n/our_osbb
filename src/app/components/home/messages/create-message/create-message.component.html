@@ -1,0 +1,32 @@
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="row row-modal">
+            <form name="form" (ngSubmit)="create()" [formGroup]="form" novalidate>
+                <h4 class="header-modal">Новое сообщение</h4>
+                <div class="row">
+                    <div class="form-group col-xs-7" *ngIf="!message">
+                        <label>Получатель</label>
+                        <input ngui-auto-complete [(ngModel)]="models" [source]="userList" list-formatter="name" placeholder="например, Вася Пупкин"
+                            class="form-control" type="text" no-match-found-text="Житель не найден." formControlName="recipientId">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-7">
+                        <label>Тема</label>
+                        <input type="text" [(ngModel)]="model.title" class="form-control" formControlName="title" placeholder="например, В какой цвет дом красим?">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Сообщение</label>
+                    <textarea id="" cols="10" rows="5" [(ngModel)]="model.body" class="form-control" formControlName="content"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" [disabled]="form.invalid">Отправить</button>
+                    <button class="btn btn-default pull-right" (click)="close()">Закрыть</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>

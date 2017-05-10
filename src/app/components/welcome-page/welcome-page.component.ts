@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -8,7 +8,13 @@ import { Router } from '@angular/router';
     styleUrls: ['welcome-page.component.scss']
 })
 export class WelcomePageComponent implements OnInit {
-    constructor() { }
+    constructor(private route: ActivatedRoute) {}
 
-    ngOnInit() { }
+    ngOnInit() {}
+    onAnchorClick() {
+        this.route.fragment.subscribe(f => {
+            const element = document.querySelector("#" + f)
+            if (element) element.scrollIntoView(element)
+        });
+    }
 }

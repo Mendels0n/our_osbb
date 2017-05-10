@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener} from '@angular/core';
-import { MessagesService } from '../../../../services/index';
+import { MessagesService } from '../../../../services/index';   
 
 @Component({
     selector: 'message',
@@ -10,13 +10,18 @@ export class MessageComponent implements OnInit {
     @Input() message: any;
     @Input() show:string;
     @Output() delMessage = new EventEmitter<any>();
-
+    @Output() addMessage = new EventEmitter<any>();
+    userId = localStorage.getItem('user_id');
+    deletedMessage:boolean;
+    showCreatedMessages:any;
     fullMessage:boolean;
+
     constructor(private messageService:MessagesService) {
         this.fullMessage = true;
      }
 
     ngOnInit() {
+        
      }
     showFullMessage(){
         this.changeReadStatus();
@@ -32,13 +37,24 @@ export class MessageComponent implements OnInit {
             }
         )
     }
-    deleteMessage(){
-        // this.messageService.deleteMessages(this.message.id).subscribe(
-        //     data => {
-        //         this.delMessage.emit(this.message);
-        //     }
-        // )
-        this.delMessage.emit(this.message);
+    deleteMessage() {
+        if (this.show == 'sended') {
+            this.messageService.deleteSenderMessages(this.message.id,'true').subscribe(
+                data => {
+                    this.delMessage.emit(this.message);
+                }
+            )
+        } else {
+            this.messageService.deleteRecivedMessages(this.message.id,'true').subscribe(
+                data => {
+                    this.delMessage.emit(this.message)
+                }
+            )
+        }
+
+        // this.delMessage.emit(this.message);
     }
-    
+    showCreatedMessage(event:any){
+        this.showCreatedMessages = event;
+    }
 }

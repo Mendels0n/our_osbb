@@ -35,11 +35,21 @@ export class MessagesService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
     }
 
-    deleteMessages(id: string) {
-        return this.http.patch(`${this.url}/api/messages/${id}/deleted`, headers())
+    deleteSenderMessages(id: string, status:string) {
+        let data = new URLSearchParams();
+        data.append('deleted_by_sender', status)
+        return this.http.patch(`${this.url}/api/messages/${id}/deleted/sender`,data, headers())
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
     }
+    deleteRecivedMessages(id: string, status:string ) {
+        let data = new URLSearchParams();
+        data.append('deleted_by_recipient', status)
+        return this.http.patch(`${this.url}/api/messages/${id}/deleted/recipient`, data, headers())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+    }
+    
 
     userSendedMessages(id: any) {
         return this.http.get(`${this.url}/api/users/${id}/messages/sended`, headers())
