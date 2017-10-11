@@ -24,8 +24,8 @@
 
 ###  Left TODO
 
-* Add profile
-* Add messages
+* ~~Add profile~~
+* ~~Add messages~~
 * Add notification
 * Update template
 * Code refactoring
