@@ -22,10 +22,10 @@
 * Running prod build: `npm run build-prod`
 
 
-###  Left TODO
+### TODO
 
-* ~~Add profile~~
-* ~~Add messages~~
+* ~~Add profile~~  `Done`
+* ~~Add messages~~ `Done`
 * Add notification
 * Update template
 * Code refactoring
