@@ -5,8 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
     "build-dev": "rm -rf dist && webpack --config config/webpack.dev.js --bail",
-    "build-prod": "rm -rf dist && webpack --config config/webpack.prod.js --bail",
-    "postinstall": "typings install"
+    "build-prod": "rm -rf dist && webpack --config config/webpack.prod.js --bail"
   },
   "dependencies": {
     "@angular/animations": "^4.1.1",
