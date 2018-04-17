@@ -12,9 +12,9 @@ export class WelcomePageComponent implements OnInit {
 
     ngOnInit() {}
     onAnchorClick() {
-        this.route.fragment.subscribe(f => {
-            const element = document.querySelector("#" + f)
-            if (element) element.scrollIntoView(element)
-        });
+//         this.route.fragment.subscribe(f => {
+//             const element = document.querySelector("#" + f)
+//             if (element) element.scrollIntoView(element)
+//         });
     }
 }
