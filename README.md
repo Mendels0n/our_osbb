@@ -1,5 +1,4 @@
 #  System for OSBB
-[Vadim Perenesenko](https://github.com/Mendels0n)
 
 ### The short list of app capabilities:
 ---
